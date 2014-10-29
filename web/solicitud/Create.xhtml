@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSolicitudTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSolicitudLabel_slcCorr}" for="slcCorr" />
+                    <h:inputText id="slcCorr" value="#{solicitudController.selected.slcCorr}" title="#{bundle.CreateSolicitudTitle_slcCorr}" required="true" requiredMessage="#{bundle.CreateSolicitudRequiredMessage_slcCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateSolicitudLabel_slcPrdCorr}" for="slcPrdCorr" />
+                    <h:inputText id="slcPrdCorr" value="#{solicitudController.selected.slcPrdCorr}" title="#{bundle.CreateSolicitudTitle_slcPrdCorr}" />
+                    <h:outputLabel value="#{bundle.CreateSolicitudLabel_slcDescripcion}" for="slcDescripcion" />
+                    <h:inputText id="slcDescripcion" value="#{solicitudController.selected.slcDescripcion}" title="#{bundle.CreateSolicitudTitle_slcDescripcion}" />
+                    <h:outputLabel value="#{bundle.CreateSolicitudLabel_slcEstado}" for="slcEstado" />
+                    <h:inputText id="slcEstado" value="#{solicitudController.selected.slcEstado}" title="#{bundle.CreateSolicitudTitle_slcEstado}" />
+                    <h:outputLabel value="#{bundle.CreateSolicitudLabel_slcCicloVida}" for="slcCicloVida" />
+                    <h:inputText id="slcCicloVida" value="#{solicitudController.selected.slcCicloVida}" title="#{bundle.CreateSolicitudTitle_slcCicloVida}" />
+                    <h:outputLabel value="#{bundle.CreateSolicitudLabel_slcFechCrea}" for="slcFechCrea" />
+                    <h:inputText id="slcFechCrea" value="#{solicitudController.selected.slcFechCrea}" title="#{bundle.CreateSolicitudTitle_slcFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSolicitudLabel_slcUsuaCrea}" for="slcUsuaCrea" />
+                    <h:inputText id="slcUsuaCrea" value="#{solicitudController.selected.slcUsuaCrea}" title="#{bundle.CreateSolicitudTitle_slcUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.CreateSolicitudLabel_proveedor}" for="proveedor" />
+                    <h:selectOneMenu id="proveedor" value="#{solicitudController.selected.proveedor}" title="#{bundle.CreateSolicitudTitle_proveedor}" >
+                        <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSolicitudLabel_cliente}" for="cliente" />
+                    <h:selectOneMenu id="cliente" value="#{solicitudController.selected.cliente}" title="#{bundle.CreateSolicitudTitle_cliente}" >
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{solicitudController.create}" value="#{bundle.CreateSolicitudSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{solicitudController.prepareList}" value="#{bundle.CreateSolicitudShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateSolicitudIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

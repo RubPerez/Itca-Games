@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHistorialCompraProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListHistorialCompraProveedorEmpty}" rendered="#{historialCompraProveedorController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{historialCompraProveedorController.items.rowCount > 0}">
+                <h:outputText value="#{historialCompraProveedorController.pagination.pageFirstItem + 1}..#{historialCompraProveedorController.pagination.pageLastItem + 1}/#{historialCompraProveedorController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{historialCompraProveedorController.previous}" value="#{bundle.Previous} #{historialCompraProveedorController.pagination.pageSize}" rendered="#{historialCompraProveedorController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{historialCompraProveedorController.next}" value="#{bundle.Next} #{historialCompraProveedorController.pagination.pageSize}" rendered="#{historialCompraProveedorController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{historialCompraProveedorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialCompraProveedorTitle_hcpCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hcpCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialCompraProveedorTitle_hcpEstadoAnterior}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hcpEstadoAnterior}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialCompraProveedorTitle_hcpCicloVidaAnterior}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hcpCicloVidaAnterior}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialCompraProveedorTitle_hcpCodEmp}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hcpCodEmp}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialCompraProveedorTitle_hcpObservacion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hcpObservacion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialCompraProveedorTitle_hcpFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hcpFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialCompraProveedorTitle_hcpUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hcpUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialCompraProveedorTitle_compraProveedor}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.compraProveedor}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{historialCompraProveedorController.prepareView}" value="#{bundle.ListHistorialCompraProveedorViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{historialCompraProveedorController.prepareEdit}" value="#{bundle.ListHistorialCompraProveedorEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{historialCompraProveedorController.destroy}" value="#{bundle.ListHistorialCompraProveedorDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{historialCompraProveedorController.prepareCreate}" value="#{bundle.ListHistorialCompraProveedorCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListHistorialCompraProveedorIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

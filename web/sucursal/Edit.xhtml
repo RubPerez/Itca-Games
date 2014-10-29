@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSucursalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_sucCorr}" for="sucCorr" />
+                    <h:inputText id="sucCorr" value="#{sucursalController.selected.sucCorr}" title="#{bundle.EditSucursalTitle_sucCorr}" required="true" requiredMessage="#{bundle.EditSucursalRequiredMessage_sucCorr}"/>
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_sucNombre}" for="sucNombre" />
+                    <h:inputText id="sucNombre" value="#{sucursalController.selected.sucNombre}" title="#{bundle.EditSucursalTitle_sucNombre}" />
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_sucDireccion}" for="sucDireccion" />
+                    <h:inputText id="sucDireccion" value="#{sucursalController.selected.sucDireccion}" title="#{bundle.EditSucursalTitle_sucDireccion}" />
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_sucTelefono}" for="sucTelefono" />
+                    <h:inputText id="sucTelefono" value="#{sucursalController.selected.sucTelefono}" title="#{bundle.EditSucursalTitle_sucTelefono}" />
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_sucFechCrea}" for="sucFechCrea" />
+                    <h:inputText id="sucFechCrea" value="#{sucursalController.selected.sucFechCrea}" title="#{bundle.EditSucursalTitle_sucFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_sucUsuaCrea}" for="sucUsuaCrea" />
+                    <h:inputText id="sucUsuaCrea" value="#{sucursalController.selected.sucUsuaCrea}" title="#{bundle.EditSucursalTitle_sucUsuaCrea}" />
+                </h:panelGrid>
+                <h:commandLink action="#{sucursalController.update}" value="#{bundle.EditSucursalSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditSucursalViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{sucursalController.prepareList}" value="#{bundle.EditSucursalShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditSucursalIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

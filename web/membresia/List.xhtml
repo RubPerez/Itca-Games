@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMembresiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListMembresiaEmpty}" rendered="#{membresiaController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{membresiaController.items.rowCount > 0}">
+                <h:outputText value="#{membresiaController.pagination.pageFirstItem + 1}..#{membresiaController.pagination.pageLastItem + 1}/#{membresiaController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{membresiaController.previous}" value="#{bundle.Previous} #{membresiaController.pagination.pageSize}" rendered="#{membresiaController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{membresiaController.next}" value="#{bundle.Next} #{membresiaController.pagination.pageSize}" rendered="#{membresiaController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{membresiaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMembresiaTitle_memCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.memCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMembresiaTitle_memNombre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.memNombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMembresiaTitle_memFlgAceptadevolucion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.memFlgAceptadevolucion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMembresiaTitle_memFechaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.memFechaCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMembresiaTitle_memUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.memUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{membresiaController.prepareView}" value="#{bundle.ListMembresiaViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{membresiaController.prepareEdit}" value="#{bundle.ListMembresiaEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{membresiaController.destroy}" value="#{bundle.ListMembresiaDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{membresiaController.prepareCreate}" value="#{bundle.ListMembresiaCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListMembresiaIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

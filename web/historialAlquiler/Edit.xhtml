@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHistorialAlquilerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHistorialAlquilerLabel_halCorr}" for="halCorr" />
+                    <h:inputText id="halCorr" value="#{historialAlquilerController.selected.halCorr}" title="#{bundle.EditHistorialAlquilerTitle_halCorr}" required="true" requiredMessage="#{bundle.EditHistorialAlquilerRequiredMessage_halCorr}"/>
+                    <h:outputLabel value="#{bundle.EditHistorialAlquilerLabel_halCodEmp}" for="halCodEmp" />
+                    <h:inputText id="halCodEmp" value="#{historialAlquilerController.selected.halCodEmp}" title="#{bundle.EditHistorialAlquilerTitle_halCodEmp}" />
+                    <h:outputLabel value="#{bundle.EditHistorialAlquilerLabel_hallEstadoAnterior}" for="hallEstadoAnterior" />
+                    <h:inputText id="hallEstadoAnterior" value="#{historialAlquilerController.selected.hallEstadoAnterior}" title="#{bundle.EditHistorialAlquilerTitle_hallEstadoAnterior}" />
+                    <h:outputLabel value="#{bundle.EditHistorialAlquilerLabel_halCicloVidaAnterior}" for="halCicloVidaAnterior" />
+                    <h:inputText id="halCicloVidaAnterior" value="#{historialAlquilerController.selected.halCicloVidaAnterior}" title="#{bundle.EditHistorialAlquilerTitle_halCicloVidaAnterior}" />
+                    <h:outputLabel value="#{bundle.EditHistorialAlquilerLabel_halObservacion}" for="halObservacion" />
+                    <h:inputText id="halObservacion" value="#{historialAlquilerController.selected.halObservacion}" title="#{bundle.EditHistorialAlquilerTitle_halObservacion}" />
+                    <h:outputLabel value="#{bundle.EditHistorialAlquilerLabel_hallFechCrea}" for="hallFechCrea" />
+                    <h:inputText id="hallFechCrea" value="#{historialAlquilerController.selected.hallFechCrea}" title="#{bundle.EditHistorialAlquilerTitle_hallFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditHistorialAlquilerLabel_halUsuaCrea}" for="halUsuaCrea" />
+                    <h:inputText id="halUsuaCrea" value="#{historialAlquilerController.selected.halUsuaCrea}" title="#{bundle.EditHistorialAlquilerTitle_halUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.EditHistorialAlquilerLabel_alquiler}" for="alquiler" />
+                    <h:selectOneMenu id="alquiler" value="#{historialAlquilerController.selected.alquiler}" title="#{bundle.EditHistorialAlquilerTitle_alquiler}" >
+                        <f:selectItems value="#{alquilerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{historialAlquilerController.update}" value="#{bundle.EditHistorialAlquilerSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditHistorialAlquilerViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{historialAlquilerController.prepareList}" value="#{bundle.EditHistorialAlquilerShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditHistorialAlquilerIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDetalleDescuentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDetalleDescuentoLabel_dtdCorr}" for="dtdCorr" />
+                    <h:inputText id="dtdCorr" value="#{detalleDescuentoController.selected.dtdCorr}" title="#{bundle.CreateDetalleDescuentoTitle_dtdCorr}" required="true" requiredMessage="#{bundle.CreateDetalleDescuentoRequiredMessage_dtdCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateDetalleDescuentoLabel_dtdValor}" for="dtdValor" />
+                    <h:inputText id="dtdValor" value="#{detalleDescuentoController.selected.dtdValor}" title="#{bundle.CreateDetalleDescuentoTitle_dtdValor}" />
+                    <h:outputLabel value="#{bundle.CreateDetalleDescuentoLabel_dtdFechCrea}" for="dtdFechCrea" />
+                    <h:inputText id="dtdFechCrea" value="#{detalleDescuentoController.selected.dtdFechCrea}" title="#{bundle.CreateDetalleDescuentoTitle_dtdFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateDetalleDescuentoLabel_dtdUsuaCrea}" for="dtdUsuaCrea" />
+                    <h:inputText id="dtdUsuaCrea" value="#{detalleDescuentoController.selected.dtdUsuaCrea}" title="#{bundle.CreateDetalleDescuentoTitle_dtdUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.CreateDetalleDescuentoLabel_sucursal}" for="sucursal" />
+                    <h:selectOneMenu id="sucursal" value="#{detalleDescuentoController.selected.sucursal}" title="#{bundle.CreateDetalleDescuentoTitle_sucursal}" >
+                        <f:selectItems value="#{sucursalController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDetalleDescuentoLabel_membresia}" for="membresia" />
+                    <h:selectOneMenu id="membresia" value="#{detalleDescuentoController.selected.membresia}" title="#{bundle.CreateDetalleDescuentoTitle_membresia}" >
+                        <f:selectItems value="#{membresiaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDetalleDescuentoLabel_inventario}" for="inventario" />
+                    <h:selectOneMenu id="inventario" value="#{detalleDescuentoController.selected.inventario}" title="#{bundle.CreateDetalleDescuentoTitle_inventario}" >
+                        <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detalleDescuentoController.create}" value="#{bundle.CreateDetalleDescuentoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{detalleDescuentoController.prepareList}" value="#{bundle.CreateDetalleDescuentoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateDetalleDescuentoIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

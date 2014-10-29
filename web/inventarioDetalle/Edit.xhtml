@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditInventarioDetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditInventarioDetalleLabel_depCodigo}" for="depCodigo" />
+                    <h:inputText id="depCodigo" value="#{inventarioDetalleController.selected.depCodigo}" title="#{bundle.EditInventarioDetalleTitle_depCodigo}" required="true" requiredMessage="#{bundle.EditInventarioDetalleRequiredMessage_depCodigo}"/>
+                    <h:outputLabel value="#{bundle.EditInventarioDetalleLabel_depSerie}" for="depSerie" />
+                    <h:inputText id="depSerie" value="#{inventarioDetalleController.selected.depSerie}" title="#{bundle.EditInventarioDetalleTitle_depSerie}" />
+                    <h:outputLabel value="#{bundle.EditInventarioDetalleLabel_depDescripcion}" for="depDescripcion" />
+                    <h:inputText id="depDescripcion" value="#{inventarioDetalleController.selected.depDescripcion}" title="#{bundle.EditInventarioDetalleTitle_depDescripcion}" />
+                    <h:outputLabel value="#{bundle.EditInventarioDetalleLabel_depCiclovida}" for="depCiclovida" />
+                    <h:inputText id="depCiclovida" value="#{inventarioDetalleController.selected.depCiclovida}" title="#{bundle.EditInventarioDetalleTitle_depCiclovida}" />
+                    <h:outputLabel value="#{bundle.EditInventarioDetalleLabel_depFechCrea}" for="depFechCrea" />
+                    <h:inputText id="depFechCrea" value="#{inventarioDetalleController.selected.depFechCrea}" title="#{bundle.EditInventarioDetalleTitle_depFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInventarioDetalleLabel_depUsuaCrea}" for="depUsuaCrea" />
+                    <h:inputText id="depUsuaCrea" value="#{inventarioDetalleController.selected.depUsuaCrea}" title="#{bundle.EditInventarioDetalleTitle_depUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.EditInventarioDetalleLabel_inventario}" for="inventario" />
+                    <h:selectOneMenu id="inventario" value="#{inventarioDetalleController.selected.inventario}" title="#{bundle.EditInventarioDetalleTitle_inventario}" >
+                        <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{inventarioDetalleController.update}" value="#{bundle.EditInventarioDetalleSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditInventarioDetalleViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{inventarioDetalleController.prepareList}" value="#{bundle.EditInventarioDetalleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditInventarioDetalleIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

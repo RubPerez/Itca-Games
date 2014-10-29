@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProductoGeneroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductoGeneroLabel_pgnCorr}" for="pgnCorr" />
+                    <h:inputText id="pgnCorr" value="#{productoGeneroController.selected.pgnCorr}" title="#{bundle.EditProductoGeneroTitle_pgnCorr}" required="true" requiredMessage="#{bundle.EditProductoGeneroRequiredMessage_pgnCorr}"/>
+                    <h:outputLabel value="#{bundle.EditProductoGeneroLabel_pgnNombre}" for="pgnNombre" />
+                    <h:inputText id="pgnNombre" value="#{productoGeneroController.selected.pgnNombre}" title="#{bundle.EditProductoGeneroTitle_pgnNombre}" />
+                    <h:outputLabel value="#{bundle.EditProductoGeneroLabel_pgnFechCrea}" for="pgnFechCrea" />
+                    <h:inputText id="pgnFechCrea" value="#{productoGeneroController.selected.pgnFechCrea}" title="#{bundle.EditProductoGeneroTitle_pgnFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditProductoGeneroLabel_pgnUsuaCrea}" for="pgnUsuaCrea" />
+                    <h:inputText id="pgnUsuaCrea" value="#{productoGeneroController.selected.pgnUsuaCrea}" title="#{bundle.EditProductoGeneroTitle_pgnUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.EditProductoGeneroLabel_generoJuego}" for="generoJuego" />
+                    <h:selectOneMenu id="generoJuego" value="#{productoGeneroController.selected.generoJuego}" title="#{bundle.EditProductoGeneroTitle_generoJuego}" >
+                        <f:selectItems value="#{generoJuegoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditProductoGeneroLabel_catalogoProducto}" for="catalogoProducto" />
+                    <h:selectOneMenu id="catalogoProducto" value="#{productoGeneroController.selected.catalogoProducto}" title="#{bundle.EditProductoGeneroTitle_catalogoProducto}" >
+                        <f:selectItems value="#{catalogoProductoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productoGeneroController.update}" value="#{bundle.EditProductoGeneroSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditProductoGeneroViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{productoGeneroController.prepareList}" value="#{bundle.EditProductoGeneroShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditProductoGeneroIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

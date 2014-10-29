@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHistorialAlquilerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHistorialAlquilerLabel_halCorr}"/>
+                    <h:outputText value="#{historialAlquilerController.selected.halCorr}" title="#{bundle.ViewHistorialAlquilerTitle_halCorr}"/>
+                    <h:outputText value="#{bundle.ViewHistorialAlquilerLabel_halCodEmp}"/>
+                    <h:outputText value="#{historialAlquilerController.selected.halCodEmp}" title="#{bundle.ViewHistorialAlquilerTitle_halCodEmp}"/>
+                    <h:outputText value="#{bundle.ViewHistorialAlquilerLabel_hallEstadoAnterior}"/>
+                    <h:outputText value="#{historialAlquilerController.selected.hallEstadoAnterior}" title="#{bundle.ViewHistorialAlquilerTitle_hallEstadoAnterior}"/>
+                    <h:outputText value="#{bundle.ViewHistorialAlquilerLabel_halCicloVidaAnterior}"/>
+                    <h:outputText value="#{historialAlquilerController.selected.halCicloVidaAnterior}" title="#{bundle.ViewHistorialAlquilerTitle_halCicloVidaAnterior}"/>
+                    <h:outputText value="#{bundle.ViewHistorialAlquilerLabel_halObservacion}"/>
+                    <h:outputText value="#{historialAlquilerController.selected.halObservacion}" title="#{bundle.ViewHistorialAlquilerTitle_halObservacion}"/>
+                    <h:outputText value="#{bundle.ViewHistorialAlquilerLabel_hallFechCrea}"/>
+                    <h:outputText value="#{historialAlquilerController.selected.hallFechCrea}" title="#{bundle.ViewHistorialAlquilerTitle_hallFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHistorialAlquilerLabel_halUsuaCrea}"/>
+                    <h:outputText value="#{historialAlquilerController.selected.halUsuaCrea}" title="#{bundle.ViewHistorialAlquilerTitle_halUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewHistorialAlquilerLabel_alquiler}"/>
+                    <h:outputText value="#{historialAlquilerController.selected.alquiler}" title="#{bundle.ViewHistorialAlquilerTitle_alquiler}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{historialAlquilerController.destroyAndView}" value="#{bundle.ViewHistorialAlquilerDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewHistorialAlquilerEditLink}"/>
+                <br />
+                <h:commandLink action="#{historialAlquilerController.prepareCreate}" value="#{bundle.ViewHistorialAlquilerCreateLink}" />
+                <br />
+                <h:commandLink action="#{historialAlquilerController.prepareList}" value="#{bundle.ViewHistorialAlquilerShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewHistorialAlquilerIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

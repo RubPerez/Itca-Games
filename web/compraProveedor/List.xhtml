@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCompraProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListCompraProveedorEmpty}" rendered="#{compraProveedorController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{compraProveedorController.items.rowCount > 0}">
+                <h:outputText value="#{compraProveedorController.pagination.pageFirstItem + 1}..#{compraProveedorController.pagination.pageLastItem + 1}/#{compraProveedorController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{compraProveedorController.previous}" value="#{bundle.Previous} #{compraProveedorController.pagination.pageSize}" rendered="#{compraProveedorController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{compraProveedorController.next}" value="#{bundle.Next} #{compraProveedorController.pagination.pageSize}" rendered="#{compraProveedorController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{compraProveedorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_cmpCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cmpCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_cmpNumCompra}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cmpNumCompra}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_cmpFechCompra}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cmpFechCompra}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_cmpFechVencimiento}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cmpFechVencimiento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_cmpEstado}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cmpEstado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_cmpCicloVida}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cmpCicloVida}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_cmpTarjeta}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cmpTarjeta}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_cmpFechaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cmpFechaCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_cmpUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cmpUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_tipoPago}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tipoPago}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_proveedor}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.proveedor}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_empleado}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.empleado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCompraProveedorTitle_detalleCompraProveedor}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.detalleCompraProveedor}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{compraProveedorController.prepareView}" value="#{bundle.ListCompraProveedorViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{compraProveedorController.prepareEdit}" value="#{bundle.ListCompraProveedorEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{compraProveedorController.destroy}" value="#{bundle.ListCompraProveedorDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{compraProveedorController.prepareCreate}" value="#{bundle.ListCompraProveedorCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListCompraProveedorIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoPagoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTipoPagoLabel_tdpCorr}"/>
+                    <h:outputText value="#{tipoPagoController.selected.tdpCorr}" title="#{bundle.ViewTipoPagoTitle_tdpCorr}"/>
+                    <h:outputText value="#{bundle.ViewTipoPagoLabel_tdpNombre}"/>
+                    <h:outputText value="#{tipoPagoController.selected.tdpNombre}" title="#{bundle.ViewTipoPagoTitle_tdpNombre}"/>
+                    <h:outputText value="#{bundle.ViewTipoPagoLabel_tdpDescripcion}"/>
+                    <h:outputText value="#{tipoPagoController.selected.tdpDescripcion}" title="#{bundle.ViewTipoPagoTitle_tdpDescripcion}"/>
+                    <h:outputText value="#{bundle.ViewTipoPagoLabel_tdpFechCrea}"/>
+                    <h:outputText value="#{tipoPagoController.selected.tdpFechCrea}" title="#{bundle.ViewTipoPagoTitle_tdpFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTipoPagoLabel_tdpUsuaCrea}"/>
+                    <h:outputText value="#{tipoPagoController.selected.tdpUsuaCrea}" title="#{bundle.ViewTipoPagoTitle_tdpUsuaCrea}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoPagoController.destroyAndView}" value="#{bundle.ViewTipoPagoDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewTipoPagoEditLink}"/>
+                <br />
+                <h:commandLink action="#{tipoPagoController.prepareCreate}" value="#{bundle.ViewTipoPagoCreateLink}" />
+                <br />
+                <h:commandLink action="#{tipoPagoController.prepareList}" value="#{bundle.ViewTipoPagoShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewTipoPagoIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

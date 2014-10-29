@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDanioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListDanioEmpty}" rendered="#{danioController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{danioController.items.rowCount > 0}">
+                <h:outputText value="#{danioController.pagination.pageFirstItem + 1}..#{danioController.pagination.pageLastItem + 1}/#{danioController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{danioController.previous}" value="#{bundle.Previous} #{danioController.pagination.pageSize}" rendered="#{danioController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{danioController.next}" value="#{bundle.Next} #{danioController.pagination.pageSize}" rendered="#{danioController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{danioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDanioTitle_danCodigo}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.danCodigo}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDanioTitle_danNombre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.danNombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDanioTitle_danEstado}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.danEstado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDanioTitle_danFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.danFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDanioTitle_danUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.danUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{danioController.prepareView}" value="#{bundle.ListDanioViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{danioController.prepareEdit}" value="#{bundle.ListDanioEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{danioController.destroy}" value="#{bundle.ListDanioDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{danioController.prepareCreate}" value="#{bundle.ListDanioCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListDanioIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

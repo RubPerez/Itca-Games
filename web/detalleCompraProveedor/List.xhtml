@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListDetalleCompraProveedorEmpty}" rendered="#{detalleCompraProveedorController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{detalleCompraProveedorController.items.rowCount > 0}">
+                <h:outputText value="#{detalleCompraProveedorController.pagination.pageFirstItem + 1}..#{detalleCompraProveedorController.pagination.pageLastItem + 1}/#{detalleCompraProveedorController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{detalleCompraProveedorController.previous}" value="#{bundle.Previous} #{detalleCompraProveedorController.pagination.pageSize}" rendered="#{detalleCompraProveedorController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{detalleCompraProveedorController.next}" value="#{bundle.Next} #{detalleCompraProveedorController.pagination.pageSize}" rendered="#{detalleCompraProveedorController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{detalleCompraProveedorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle_dtcCmpCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtcCmpCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle_dtcCantidad}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtcCantidad}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle_dtcEnvio}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtcEnvio}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle_dtcEstado}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtcEstado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle_dtcFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtcFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle_dtcUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtcUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle_dtcPrecio}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtcPrecio}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle_inventario}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.inventario}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleCompraProveedorTitle_compraProveedor}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.compraProveedor}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{detalleCompraProveedorController.prepareView}" value="#{bundle.ListDetalleCompraProveedorViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{detalleCompraProveedorController.prepareEdit}" value="#{bundle.ListDetalleCompraProveedorEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{detalleCompraProveedorController.destroy}" value="#{bundle.ListDetalleCompraProveedorDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{detalleCompraProveedorController.prepareCreate}" value="#{bundle.ListDetalleCompraProveedorCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListDetalleCompraProveedorIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

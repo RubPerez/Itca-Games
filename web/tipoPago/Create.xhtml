@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTipoPagoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTipoPagoLabel_tdpCorr}" for="tdpCorr" />
+                    <h:inputText id="tdpCorr" value="#{tipoPagoController.selected.tdpCorr}" title="#{bundle.CreateTipoPagoTitle_tdpCorr}" required="true" requiredMessage="#{bundle.CreateTipoPagoRequiredMessage_tdpCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateTipoPagoLabel_tdpNombre}" for="tdpNombre" />
+                    <h:inputText id="tdpNombre" value="#{tipoPagoController.selected.tdpNombre}" title="#{bundle.CreateTipoPagoTitle_tdpNombre}" />
+                    <h:outputLabel value="#{bundle.CreateTipoPagoLabel_tdpDescripcion}" for="tdpDescripcion" />
+                    <h:inputText id="tdpDescripcion" value="#{tipoPagoController.selected.tdpDescripcion}" title="#{bundle.CreateTipoPagoTitle_tdpDescripcion}" />
+                    <h:outputLabel value="#{bundle.CreateTipoPagoLabel_tdpFechCrea}" for="tdpFechCrea" />
+                    <h:inputText id="tdpFechCrea" value="#{tipoPagoController.selected.tdpFechCrea}" title="#{bundle.CreateTipoPagoTitle_tdpFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateTipoPagoLabel_tdpUsuaCrea}" for="tdpUsuaCrea" />
+                    <h:inputText id="tdpUsuaCrea" value="#{tipoPagoController.selected.tdpUsuaCrea}" title="#{bundle.CreateTipoPagoTitle_tdpUsuaCrea}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoPagoController.create}" value="#{bundle.CreateTipoPagoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tipoPagoController.prepareList}" value="#{bundle.CreateTipoPagoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateTipoPagoIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

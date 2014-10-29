@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMembresiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMembresiaLabel_memCorr}" for="memCorr" />
+                    <h:inputText id="memCorr" value="#{membresiaController.selected.memCorr}" title="#{bundle.CreateMembresiaTitle_memCorr}" required="true" requiredMessage="#{bundle.CreateMembresiaRequiredMessage_memCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateMembresiaLabel_memNombre}" for="memNombre" />
+                    <h:inputText id="memNombre" value="#{membresiaController.selected.memNombre}" title="#{bundle.CreateMembresiaTitle_memNombre}" />
+                    <h:outputLabel value="#{bundle.CreateMembresiaLabel_memFlgAceptadevolucion}" for="memFlgAceptadevolucion" />
+                    <h:inputText id="memFlgAceptadevolucion" value="#{membresiaController.selected.memFlgAceptadevolucion}" title="#{bundle.CreateMembresiaTitle_memFlgAceptadevolucion}" />
+                    <h:outputLabel value="#{bundle.CreateMembresiaLabel_memFechaCrea}" for="memFechaCrea" />
+                    <h:inputText id="memFechaCrea" value="#{membresiaController.selected.memFechaCrea}" title="#{bundle.CreateMembresiaTitle_memFechaCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMembresiaLabel_memUsuaCrea}" for="memUsuaCrea" />
+                    <h:inputText id="memUsuaCrea" value="#{membresiaController.selected.memUsuaCrea}" title="#{bundle.CreateMembresiaTitle_memUsuaCrea}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{membresiaController.create}" value="#{bundle.CreateMembresiaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{membresiaController.prepareList}" value="#{bundle.CreateMembresiaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateMembresiaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

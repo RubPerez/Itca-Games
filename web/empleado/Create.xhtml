@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEmpleadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empCorr}" for="empCorr" />
+                    <h:inputText id="empCorr" value="#{empleadoController.selected.empCorr}" title="#{bundle.CreateEmpleadoTitle_empCorr}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_empCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empNombre}" for="empNombre" />
+                    <h:inputText id="empNombre" value="#{empleadoController.selected.empNombre}" title="#{bundle.CreateEmpleadoTitle_empNombre}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empApellodo}" for="empApellodo" />
+                    <h:inputText id="empApellodo" value="#{empleadoController.selected.empApellodo}" title="#{bundle.CreateEmpleadoTitle_empApellodo}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empTelefono}" for="empTelefono" />
+                    <h:inputText id="empTelefono" value="#{empleadoController.selected.empTelefono}" title="#{bundle.CreateEmpleadoTitle_empTelefono}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empNumDoc}" for="empNumDoc" />
+                    <h:inputText id="empNumDoc" value="#{empleadoController.selected.empNumDoc}" title="#{bundle.CreateEmpleadoTitle_empNumDoc}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empDireccion}" for="empDireccion" />
+                    <h:inputText id="empDireccion" value="#{empleadoController.selected.empDireccion}" title="#{bundle.CreateEmpleadoTitle_empDireccion}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empEmpEmail}" for="empEmpEmail" />
+                    <h:inputText id="empEmpEmail" value="#{empleadoController.selected.empEmpEmail}" title="#{bundle.CreateEmpleadoTitle_empEmpEmail}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empFechNacimiento}" for="empFechNacimiento" />
+                    <h:inputText id="empFechNacimiento" value="#{empleadoController.selected.empFechNacimiento}" title="#{bundle.CreateEmpleadoTitle_empFechNacimiento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empFechCrea}" for="empFechCrea" />
+                    <h:inputText id="empFechCrea" value="#{empleadoController.selected.empFechCrea}" title="#{bundle.CreateEmpleadoTitle_empFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_empUsuaCrea}" for="empUsuaCrea" />
+                    <h:inputText id="empUsuaCrea" value="#{empleadoController.selected.empUsuaCrea}" title="#{bundle.CreateEmpleadoTitle_empUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_usuario}" for="usuario" />
+                    <h:selectOneMenu id="usuario" value="#{empleadoController.selected.usuario}" title="#{bundle.CreateEmpleadoTitle_usuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_sucursal}" for="sucursal" />
+                    <h:selectOneMenu id="sucursal" value="#{empleadoController.selected.sucursal}" title="#{bundle.CreateEmpleadoTitle_sucursal}" >
+                        <f:selectItems value="#{sucursalController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_cargo}" for="cargo" />
+                    <h:selectOneMenu id="cargo" value="#{empleadoController.selected.cargo}" title="#{bundle.CreateEmpleadoTitle_cargo}" >
+                        <f:selectItems value="#{cargoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{empleadoController.create}" value="#{bundle.CreateEmpleadoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{empleadoController.prepareList}" value="#{bundle.CreateEmpleadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateEmpleadoIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

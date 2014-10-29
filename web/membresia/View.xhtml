@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMembresiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMembresiaLabel_memCorr}"/>
+                    <h:outputText value="#{membresiaController.selected.memCorr}" title="#{bundle.ViewMembresiaTitle_memCorr}"/>
+                    <h:outputText value="#{bundle.ViewMembresiaLabel_memNombre}"/>
+                    <h:outputText value="#{membresiaController.selected.memNombre}" title="#{bundle.ViewMembresiaTitle_memNombre}"/>
+                    <h:outputText value="#{bundle.ViewMembresiaLabel_memFlgAceptadevolucion}"/>
+                    <h:outputText value="#{membresiaController.selected.memFlgAceptadevolucion}" title="#{bundle.ViewMembresiaTitle_memFlgAceptadevolucion}"/>
+                    <h:outputText value="#{bundle.ViewMembresiaLabel_memFechaCrea}"/>
+                    <h:outputText value="#{membresiaController.selected.memFechaCrea}" title="#{bundle.ViewMembresiaTitle_memFechaCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMembresiaLabel_memUsuaCrea}"/>
+                    <h:outputText value="#{membresiaController.selected.memUsuaCrea}" title="#{bundle.ViewMembresiaTitle_memUsuaCrea}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{membresiaController.destroyAndView}" value="#{bundle.ViewMembresiaDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewMembresiaEditLink}"/>
+                <br />
+                <h:commandLink action="#{membresiaController.prepareCreate}" value="#{bundle.ViewMembresiaCreateLink}" />
+                <br />
+                <h:commandLink action="#{membresiaController.prepareList}" value="#{bundle.ViewMembresiaShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewMembresiaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

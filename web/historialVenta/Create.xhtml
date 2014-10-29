@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateHistorialVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateHistorialVentaLabel_hsvCorr}" for="hsvCorr" />
+                    <h:inputText id="hsvCorr" value="#{historialVentaController.selected.hsvCorr}" title="#{bundle.CreateHistorialVentaTitle_hsvCorr}" required="true" requiredMessage="#{bundle.CreateHistorialVentaRequiredMessage_hsvCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateHistorialVentaLabel_hsvCodEmp}" for="hsvCodEmp" />
+                    <h:inputText id="hsvCodEmp" value="#{historialVentaController.selected.hsvCodEmp}" title="#{bundle.CreateHistorialVentaTitle_hsvCodEmp}" />
+                    <h:outputLabel value="#{bundle.CreateHistorialVentaLabel_hsvEstadoAnterior}" for="hsvEstadoAnterior" />
+                    <h:inputText id="hsvEstadoAnterior" value="#{historialVentaController.selected.hsvEstadoAnterior}" title="#{bundle.CreateHistorialVentaTitle_hsvEstadoAnterior}" />
+                    <h:outputLabel value="#{bundle.CreateHistorialVentaLabel_hsvObservacion}" for="hsvObservacion" />
+                    <h:inputText id="hsvObservacion" value="#{historialVentaController.selected.hsvObservacion}" title="#{bundle.CreateHistorialVentaTitle_hsvObservacion}" />
+                    <h:outputLabel value="#{bundle.CreateHistorialVentaLabel_hsvFechCrea}" for="hsvFechCrea" />
+                    <h:inputText id="hsvFechCrea" value="#{historialVentaController.selected.hsvFechCrea}" title="#{bundle.CreateHistorialVentaTitle_hsvFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateHistorialVentaLabel_hsvUsuaCrea}" for="hsvUsuaCrea" />
+                    <h:inputText id="hsvUsuaCrea" value="#{historialVentaController.selected.hsvUsuaCrea}" title="#{bundle.CreateHistorialVentaTitle_hsvUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.CreateHistorialVentaLabel_venta}" for="venta" />
+                    <h:selectOneMenu id="venta" value="#{historialVentaController.selected.venta}" title="#{bundle.CreateHistorialVentaTitle_venta}" >
+                        <f:selectItems value="#{ventaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{historialVentaController.create}" value="#{bundle.CreateHistorialVentaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{historialVentaController.prepareList}" value="#{bundle.CreateHistorialVentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateHistorialVentaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

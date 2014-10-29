@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDanioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDanioLabel_danCodigo}" for="danCodigo" />
+                    <h:inputText id="danCodigo" value="#{danioController.selected.danCodigo}" title="#{bundle.EditDanioTitle_danCodigo}" required="true" requiredMessage="#{bundle.EditDanioRequiredMessage_danCodigo}"/>
+                    <h:outputLabel value="#{bundle.EditDanioLabel_danNombre}" for="danNombre" />
+                    <h:inputText id="danNombre" value="#{danioController.selected.danNombre}" title="#{bundle.EditDanioTitle_danNombre}" />
+                    <h:outputLabel value="#{bundle.EditDanioLabel_danEstado}" for="danEstado" />
+                    <h:inputText id="danEstado" value="#{danioController.selected.danEstado}" title="#{bundle.EditDanioTitle_danEstado}" />
+                    <h:outputLabel value="#{bundle.EditDanioLabel_danFechCrea}" for="danFechCrea" />
+                    <h:inputText id="danFechCrea" value="#{danioController.selected.danFechCrea}" title="#{bundle.EditDanioTitle_danFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditDanioLabel_danUsuaCrea}" for="danUsuaCrea" />
+                    <h:inputText id="danUsuaCrea" value="#{danioController.selected.danUsuaCrea}" title="#{bundle.EditDanioTitle_danUsuaCrea}" />
+                </h:panelGrid>
+                <h:commandLink action="#{danioController.update}" value="#{bundle.EditDanioSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditDanioViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{danioController.prepareList}" value="#{bundle.EditDanioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditDanioIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

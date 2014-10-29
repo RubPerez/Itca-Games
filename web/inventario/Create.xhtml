@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateInventarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invCorr}" for="invCorr" />
+                    <h:inputText id="invCorr" value="#{inventarioController.selected.invCorr}" title="#{bundle.CreateInventarioTitle_invCorr}" required="true" requiredMessage="#{bundle.CreateInventarioRequiredMessage_invCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invTipoTransaccion}" for="invTipoTransaccion" />
+                    <h:inputText id="invTipoTransaccion" value="#{inventarioController.selected.invTipoTransaccion}" title="#{bundle.CreateInventarioTitle_invTipoTransaccion}" />
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invNombre}" for="invNombre" />
+                    <h:inputText id="invNombre" value="#{inventarioController.selected.invNombre}" title="#{bundle.CreateInventarioTitle_invNombre}" />
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invDescripcion}" for="invDescripcion" />
+                    <h:inputText id="invDescripcion" value="#{inventarioController.selected.invDescripcion}" title="#{bundle.CreateInventarioTitle_invDescripcion}" />
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invCantidad}" for="invCantidad" />
+                    <h:inputText id="invCantidad" value="#{inventarioController.selected.invCantidad}" title="#{bundle.CreateInventarioTitle_invCantidad}" />
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invPrecio}" for="invPrecio" />
+                    <h:inputText id="invPrecio" value="#{inventarioController.selected.invPrecio}" title="#{bundle.CreateInventarioTitle_invPrecio}" />
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invEstado}" for="invEstado" />
+                    <h:inputText id="invEstado" value="#{inventarioController.selected.invEstado}" title="#{bundle.CreateInventarioTitle_invEstado}" />
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invImagen}" for="invImagen" />
+                    <h:inputText id="invImagen" value="#{inventarioController.selected.invImagen}" title="#{bundle.CreateInventarioTitle_invImagen}" />
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invFechCrea}" for="invFechCrea" />
+                    <h:inputText id="invFechCrea" value="#{inventarioController.selected.invFechCrea}" title="#{bundle.CreateInventarioTitle_invFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_invUsuaCrea}" for="invUsuaCrea" />
+                    <h:inputText id="invUsuaCrea" value="#{inventarioController.selected.invUsuaCrea}" title="#{bundle.CreateInventarioTitle_invUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_sucursal}" for="sucursal" />
+                    <h:selectOneMenu id="sucursal" value="#{inventarioController.selected.sucursal}" title="#{bundle.CreateInventarioTitle_sucursal}" >
+                        <f:selectItems value="#{sucursalController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_modelo}" for="modelo" />
+                    <h:selectOneMenu id="modelo" value="#{inventarioController.selected.modelo}" title="#{bundle.CreateInventarioTitle_modelo}" >
+                        <f:selectItems value="#{modeloController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_marca}" for="marca" />
+                    <h:selectOneMenu id="marca" value="#{inventarioController.selected.marca}" title="#{bundle.CreateInventarioTitle_marca}" >
+                        <f:selectItems value="#{marcaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_catalogoProducto}" for="catalogoProducto" />
+                    <h:selectOneMenu id="catalogoProducto" value="#{inventarioController.selected.catalogoProducto}" title="#{bundle.CreateInventarioTitle_catalogoProducto}" >
+                        <f:selectItems value="#{catalogoProductoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateInventarioLabel_consolaInventario}" for="consolaInventario" />
+                    <h:selectOneMenu id="consolaInventario" value="#{inventarioController.selected.consolaInventario}" title="#{bundle.CreateInventarioTitle_consolaInventario}" >
+                        <f:selectItems value="#{consolaInventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{inventarioController.create}" value="#{bundle.CreateInventarioSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{inventarioController.prepareList}" value="#{bundle.CreateInventarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateInventarioIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

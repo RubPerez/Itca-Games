@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewInventarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invCorr}"/>
+                    <h:outputText value="#{inventarioController.selected.invCorr}" title="#{bundle.ViewInventarioTitle_invCorr}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invTipoTransaccion}"/>
+                    <h:outputText value="#{inventarioController.selected.invTipoTransaccion}" title="#{bundle.ViewInventarioTitle_invTipoTransaccion}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invNombre}"/>
+                    <h:outputText value="#{inventarioController.selected.invNombre}" title="#{bundle.ViewInventarioTitle_invNombre}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invDescripcion}"/>
+                    <h:outputText value="#{inventarioController.selected.invDescripcion}" title="#{bundle.ViewInventarioTitle_invDescripcion}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invCantidad}"/>
+                    <h:outputText value="#{inventarioController.selected.invCantidad}" title="#{bundle.ViewInventarioTitle_invCantidad}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invPrecio}"/>
+                    <h:outputText value="#{inventarioController.selected.invPrecio}" title="#{bundle.ViewInventarioTitle_invPrecio}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invEstado}"/>
+                    <h:outputText value="#{inventarioController.selected.invEstado}" title="#{bundle.ViewInventarioTitle_invEstado}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invImagen}"/>
+                    <h:outputText value="#{inventarioController.selected.invImagen}" title="#{bundle.ViewInventarioTitle_invImagen}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invFechCrea}"/>
+                    <h:outputText value="#{inventarioController.selected.invFechCrea}" title="#{bundle.ViewInventarioTitle_invFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_invUsuaCrea}"/>
+                    <h:outputText value="#{inventarioController.selected.invUsuaCrea}" title="#{bundle.ViewInventarioTitle_invUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_sucursal}"/>
+                    <h:outputText value="#{inventarioController.selected.sucursal}" title="#{bundle.ViewInventarioTitle_sucursal}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_modelo}"/>
+                    <h:outputText value="#{inventarioController.selected.modelo}" title="#{bundle.ViewInventarioTitle_modelo}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_marca}"/>
+                    <h:outputText value="#{inventarioController.selected.marca}" title="#{bundle.ViewInventarioTitle_marca}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_catalogoProducto}"/>
+                    <h:outputText value="#{inventarioController.selected.catalogoProducto}" title="#{bundle.ViewInventarioTitle_catalogoProducto}"/>
+                    <h:outputText value="#{bundle.ViewInventarioLabel_consolaInventario}"/>
+                    <h:outputText value="#{inventarioController.selected.consolaInventario}" title="#{bundle.ViewInventarioTitle_consolaInventario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{inventarioController.destroyAndView}" value="#{bundle.ViewInventarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewInventarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{inventarioController.prepareCreate}" value="#{bundle.ViewInventarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{inventarioController.prepareList}" value="#{bundle.ViewInventarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewInventarioIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

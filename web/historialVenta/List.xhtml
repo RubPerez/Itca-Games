@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHistorialVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListHistorialVentaEmpty}" rendered="#{historialVentaController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{historialVentaController.items.rowCount > 0}">
+                <h:outputText value="#{historialVentaController.pagination.pageFirstItem + 1}..#{historialVentaController.pagination.pageLastItem + 1}/#{historialVentaController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{historialVentaController.previous}" value="#{bundle.Previous} #{historialVentaController.pagination.pageSize}" rendered="#{historialVentaController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{historialVentaController.next}" value="#{bundle.Next} #{historialVentaController.pagination.pageSize}" rendered="#{historialVentaController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{historialVentaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialVentaTitle_hsvCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hsvCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialVentaTitle_hsvCodEmp}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hsvCodEmp}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialVentaTitle_hsvEstadoAnterior}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hsvEstadoAnterior}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialVentaTitle_hsvObservacion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hsvObservacion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialVentaTitle_hsvFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hsvFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialVentaTitle_hsvUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hsvUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialVentaTitle_venta}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.venta}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{historialVentaController.prepareView}" value="#{bundle.ListHistorialVentaViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{historialVentaController.prepareEdit}" value="#{bundle.ListHistorialVentaEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{historialVentaController.destroy}" value="#{bundle.ListHistorialVentaDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{historialVentaController.prepareCreate}" value="#{bundle.ListHistorialVentaCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListHistorialVentaIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

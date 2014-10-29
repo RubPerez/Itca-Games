@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateConsolaInventarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateConsolaInventarioLabel_cinInvCorr}" for="cinInvCorr" />
+                    <h:inputText id="cinInvCorr" value="#{consolaInventarioController.selected.cinInvCorr}" title="#{bundle.CreateConsolaInventarioTitle_cinInvCorr}" required="true" requiredMessage="#{bundle.CreateConsolaInventarioRequiredMessage_cinInvCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateConsolaInventarioLabel_cinFechCrea}" for="cinFechCrea" />
+                    <h:inputText id="cinFechCrea" value="#{consolaInventarioController.selected.cinFechCrea}" title="#{bundle.CreateConsolaInventarioTitle_cinFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateConsolaInventarioLabel_cinUsuaCrea}" for="cinUsuaCrea" />
+                    <h:inputText id="cinUsuaCrea" value="#{consolaInventarioController.selected.cinUsuaCrea}" title="#{bundle.CreateConsolaInventarioTitle_cinUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.CreateConsolaInventarioLabel_inventario}" for="inventario" />
+                    <h:selectOneMenu id="inventario" value="#{consolaInventarioController.selected.inventario}" title="#{bundle.CreateConsolaInventarioTitle_inventario}" required="true" requiredMessage="#{bundle.CreateConsolaInventarioRequiredMessage_inventario}">
+                        <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateConsolaInventarioLabel_consolaJuego}" for="consolaJuego" />
+                    <h:selectOneMenu id="consolaJuego" value="#{consolaInventarioController.selected.consolaJuego}" title="#{bundle.CreateConsolaInventarioTitle_consolaJuego}" >
+                        <f:selectItems value="#{consolaJuegoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{consolaInventarioController.create}" value="#{bundle.CreateConsolaInventarioSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{consolaInventarioController.prepareList}" value="#{bundle.CreateConsolaInventarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateConsolaInventarioIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

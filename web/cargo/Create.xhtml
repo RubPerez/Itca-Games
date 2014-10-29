@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCargoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCargoLabel_crgCorr}" for="crgCorr" />
+                    <h:inputText id="crgCorr" value="#{cargoController.selected.crgCorr}" title="#{bundle.CreateCargoTitle_crgCorr}" required="true" requiredMessage="#{bundle.CreateCargoRequiredMessage_crgCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateCargoLabel_crgNombre}" for="crgNombre" />
+                    <h:inputText id="crgNombre" value="#{cargoController.selected.crgNombre}" title="#{bundle.CreateCargoTitle_crgNombre}" />
+                    <h:outputLabel value="#{bundle.CreateCargoLabel_crgFuncion}" for="crgFuncion" />
+                    <h:inputText id="crgFuncion" value="#{cargoController.selected.crgFuncion}" title="#{bundle.CreateCargoTitle_crgFuncion}" />
+                    <h:outputLabel value="#{bundle.CreateCargoLabel_crgFechCrea}" for="crgFechCrea" />
+                    <h:inputText id="crgFechCrea" value="#{cargoController.selected.crgFechCrea}" title="#{bundle.CreateCargoTitle_crgFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateCargoLabel_crgUsuaCrea}" for="crgUsuaCrea" />
+                    <h:inputText id="crgUsuaCrea" value="#{cargoController.selected.crgUsuaCrea}" title="#{bundle.CreateCargoTitle_crgUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.CreateCargoLabel_area}" for="area" />
+                    <h:selectOneMenu id="area" value="#{cargoController.selected.area}" title="#{bundle.CreateCargoTitle_area}" >
+                        <f:selectItems value="#{areaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cargoController.create}" value="#{bundle.CreateCargoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cargoController.prepareList}" value="#{bundle.CreateCargoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateCargoIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

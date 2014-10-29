@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditVentaLabel_vntCorr}" for="vntCorr" />
+                    <h:inputText id="vntCorr" value="#{ventaController.selected.vntCorr}" title="#{bundle.EditVentaTitle_vntCorr}" required="true" requiredMessage="#{bundle.EditVentaRequiredMessage_vntCorr}"/>
+                    <h:outputLabel value="#{bundle.EditVentaLabel_vntNumVenta}" for="vntNumVenta" />
+                    <h:inputText id="vntNumVenta" value="#{ventaController.selected.vntNumVenta}" title="#{bundle.EditVentaTitle_vntNumVenta}" />
+                    <h:outputLabel value="#{bundle.EditVentaLabel_vntFechVenta}" for="vntFechVenta" />
+                    <h:inputText id="vntFechVenta" value="#{ventaController.selected.vntFechVenta}" title="#{bundle.EditVentaTitle_vntFechVenta}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVentaLabel_vntAutorizacion}" for="vntAutorizacion" />
+                    <h:inputText id="vntAutorizacion" value="#{ventaController.selected.vntAutorizacion}" title="#{bundle.EditVentaTitle_vntAutorizacion}" />
+                    <h:outputLabel value="#{bundle.EditVentaLabel_vntEstado}" for="vntEstado" />
+                    <h:inputText id="vntEstado" value="#{ventaController.selected.vntEstado}" title="#{bundle.EditVentaTitle_vntEstado}" />
+                    <h:outputLabel value="#{bundle.EditVentaLabel_vntCicloVida}" for="vntCicloVida" />
+                    <h:inputText id="vntCicloVida" value="#{ventaController.selected.vntCicloVida}" title="#{bundle.EditVentaTitle_vntCicloVida}" />
+                    <h:outputLabel value="#{bundle.EditVentaLabel_vntFechCrea}" for="vntFechCrea" />
+                    <h:inputText id="vntFechCrea" value="#{ventaController.selected.vntFechCrea}" title="#{bundle.EditVentaTitle_vntFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVentaLabel_vntUsuaCrea}" for="vntUsuaCrea" />
+                    <h:inputText id="vntUsuaCrea" value="#{ventaController.selected.vntUsuaCrea}" title="#{bundle.EditVentaTitle_vntUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.EditVentaLabel_tipoPago}" for="tipoPago" />
+                    <h:selectOneMenu id="tipoPago" value="#{ventaController.selected.tipoPago}" title="#{bundle.EditVentaTitle_tipoPago}" >
+                        <f:selectItems value="#{tipoPagoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditVentaLabel_cliente}" for="cliente" />
+                    <h:selectOneMenu id="cliente" value="#{ventaController.selected.cliente}" title="#{bundle.EditVentaTitle_cliente}" >
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditVentaLabel_alquiler}" for="alquiler" />
+                    <h:selectOneMenu id="alquiler" value="#{ventaController.selected.alquiler}" title="#{bundle.EditVentaTitle_alquiler}" >
+                        <f:selectItems value="#{alquilerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{ventaController.update}" value="#{bundle.EditVentaSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditVentaViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{ventaController.prepareList}" value="#{bundle.EditVentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditVentaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

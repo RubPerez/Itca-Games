@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListConsolaInventarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListConsolaInventarioEmpty}" rendered="#{consolaInventarioController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{consolaInventarioController.items.rowCount > 0}">
+                <h:outputText value="#{consolaInventarioController.pagination.pageFirstItem + 1}..#{consolaInventarioController.pagination.pageLastItem + 1}/#{consolaInventarioController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{consolaInventarioController.previous}" value="#{bundle.Previous} #{consolaInventarioController.pagination.pageSize}" rendered="#{consolaInventarioController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{consolaInventarioController.next}" value="#{bundle.Next} #{consolaInventarioController.pagination.pageSize}" rendered="#{consolaInventarioController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{consolaInventarioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConsolaInventarioTitle_cinInvCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cinInvCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConsolaInventarioTitle_cinFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cinFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConsolaInventarioTitle_cinUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cinUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConsolaInventarioTitle_inventario}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.inventario}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListConsolaInventarioTitle_consolaJuego}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.consolaJuego}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{consolaInventarioController.prepareView}" value="#{bundle.ListConsolaInventarioViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{consolaInventarioController.prepareEdit}" value="#{bundle.ListConsolaInventarioEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{consolaInventarioController.destroy}" value="#{bundle.ListConsolaInventarioDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{consolaInventarioController.prepareCreate}" value="#{bundle.ListConsolaInventarioCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListConsolaInventarioIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCatalogoProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCatalogoProductoLabel_ctgCorr}" for="ctgCorr" />
+                    <h:inputText id="ctgCorr" value="#{catalogoProductoController.selected.ctgCorr}" title="#{bundle.EditCatalogoProductoTitle_ctgCorr}" required="true" requiredMessage="#{bundle.EditCatalogoProductoRequiredMessage_ctgCorr}"/>
+                    <h:outputLabel value="#{bundle.EditCatalogoProductoLabel_ctgNombre}" for="ctgNombre" />
+                    <h:inputText id="ctgNombre" value="#{catalogoProductoController.selected.ctgNombre}" title="#{bundle.EditCatalogoProductoTitle_ctgNombre}" />
+                    <h:outputLabel value="#{bundle.EditCatalogoProductoLabel_ctgFechCrea}" for="ctgFechCrea" />
+                    <h:inputText id="ctgFechCrea" value="#{catalogoProductoController.selected.ctgFechCrea}" title="#{bundle.EditCatalogoProductoTitle_ctgFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCatalogoProductoLabel_ctgUsuaCrea}" for="ctgUsuaCrea" />
+                    <h:inputText id="ctgUsuaCrea" value="#{catalogoProductoController.selected.ctgUsuaCrea}" title="#{bundle.EditCatalogoProductoTitle_ctgUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.EditCatalogoProductoLabel_tipoProducto}" for="tipoProducto" />
+                    <h:selectOneMenu id="tipoProducto" value="#{catalogoProductoController.selected.tipoProducto}" title="#{bundle.EditCatalogoProductoTitle_tipoProducto}" >
+                        <f:selectItems value="#{tipoProductoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{catalogoProductoController.update}" value="#{bundle.EditCatalogoProductoSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditCatalogoProductoViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{catalogoProductoController.prepareList}" value="#{bundle.EditCatalogoProductoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditCatalogoProductoIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

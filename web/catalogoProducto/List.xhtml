@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCatalogoProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListCatalogoProductoEmpty}" rendered="#{catalogoProductoController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{catalogoProductoController.items.rowCount > 0}">
+                <h:outputText value="#{catalogoProductoController.pagination.pageFirstItem + 1}..#{catalogoProductoController.pagination.pageLastItem + 1}/#{catalogoProductoController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{catalogoProductoController.previous}" value="#{bundle.Previous} #{catalogoProductoController.pagination.pageSize}" rendered="#{catalogoProductoController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{catalogoProductoController.next}" value="#{bundle.Next} #{catalogoProductoController.pagination.pageSize}" rendered="#{catalogoProductoController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{catalogoProductoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCatalogoProductoTitle_ctgCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ctgCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCatalogoProductoTitle_ctgNombre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ctgNombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCatalogoProductoTitle_ctgFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ctgFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCatalogoProductoTitle_ctgUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ctgUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCatalogoProductoTitle_tipoProducto}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tipoProducto}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{catalogoProductoController.prepareView}" value="#{bundle.ListCatalogoProductoViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{catalogoProductoController.prepareEdit}" value="#{bundle.ListCatalogoProductoEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{catalogoProductoController.destroy}" value="#{bundle.ListCatalogoProductoDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{catalogoProductoController.prepareCreate}" value="#{bundle.ListCatalogoProductoCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListCatalogoProductoIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCompraProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_cmpCorr}"/>
+                    <h:outputText value="#{compraProveedorController.selected.cmpCorr}" title="#{bundle.ViewCompraProveedorTitle_cmpCorr}"/>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_cmpNumCompra}"/>
+                    <h:outputText value="#{compraProveedorController.selected.cmpNumCompra}" title="#{bundle.ViewCompraProveedorTitle_cmpNumCompra}"/>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_cmpFechCompra}"/>
+                    <h:outputText value="#{compraProveedorController.selected.cmpFechCompra}" title="#{bundle.ViewCompraProveedorTitle_cmpFechCompra}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_cmpFechVencimiento}"/>
+                    <h:outputText value="#{compraProveedorController.selected.cmpFechVencimiento}" title="#{bundle.ViewCompraProveedorTitle_cmpFechVencimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_cmpEstado}"/>
+                    <h:outputText value="#{compraProveedorController.selected.cmpEstado}" title="#{bundle.ViewCompraProveedorTitle_cmpEstado}"/>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_cmpCicloVida}"/>
+                    <h:outputText value="#{compraProveedorController.selected.cmpCicloVida}" title="#{bundle.ViewCompraProveedorTitle_cmpCicloVida}"/>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_cmpTarjeta}"/>
+                    <h:outputText value="#{compraProveedorController.selected.cmpTarjeta}" title="#{bundle.ViewCompraProveedorTitle_cmpTarjeta}"/>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_cmpFechaCrea}"/>
+                    <h:outputText value="#{compraProveedorController.selected.cmpFechaCrea}" title="#{bundle.ViewCompraProveedorTitle_cmpFechaCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_cmpUsuaCrea}"/>
+                    <h:outputText value="#{compraProveedorController.selected.cmpUsuaCrea}" title="#{bundle.ViewCompraProveedorTitle_cmpUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_tipoPago}"/>
+                    <h:outputText value="#{compraProveedorController.selected.tipoPago}" title="#{bundle.ViewCompraProveedorTitle_tipoPago}"/>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_proveedor}"/>
+                    <h:outputText value="#{compraProveedorController.selected.proveedor}" title="#{bundle.ViewCompraProveedorTitle_proveedor}"/>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_empleado}"/>
+                    <h:outputText value="#{compraProveedorController.selected.empleado}" title="#{bundle.ViewCompraProveedorTitle_empleado}"/>
+                    <h:outputText value="#{bundle.ViewCompraProveedorLabel_detalleCompraProveedor}"/>
+                    <h:outputText value="#{compraProveedorController.selected.detalleCompraProveedor}" title="#{bundle.ViewCompraProveedorTitle_detalleCompraProveedor}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{compraProveedorController.destroyAndView}" value="#{bundle.ViewCompraProveedorDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewCompraProveedorEditLink}"/>
+                <br />
+                <h:commandLink action="#{compraProveedorController.prepareCreate}" value="#{bundle.ViewCompraProveedorCreateLink}" />
+                <br />
+                <h:commandLink action="#{compraProveedorController.prepareList}" value="#{bundle.ViewCompraProveedorShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewCompraProveedorIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

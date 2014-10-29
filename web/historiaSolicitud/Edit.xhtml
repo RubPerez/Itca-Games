@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHistoriaSolicitudTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHistoriaSolicitudLabel_hslCorr}" for="hslCorr" />
+                    <h:inputText id="hslCorr" value="#{historiaSolicitudController.selected.hslCorr}" title="#{bundle.EditHistoriaSolicitudTitle_hslCorr}" required="true" requiredMessage="#{bundle.EditHistoriaSolicitudRequiredMessage_hslCorr}"/>
+                    <h:outputLabel value="#{bundle.EditHistoriaSolicitudLabel_hslComentario}" for="hslComentario" />
+                    <h:inputText id="hslComentario" value="#{historiaSolicitudController.selected.hslComentario}" title="#{bundle.EditHistoriaSolicitudTitle_hslComentario}" />
+                    <h:outputLabel value="#{bundle.EditHistoriaSolicitudLabel_hslFechCrea}" for="hslFechCrea" />
+                    <h:inputText id="hslFechCrea" value="#{historiaSolicitudController.selected.hslFechCrea}" title="#{bundle.EditHistoriaSolicitudTitle_hslFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditHistoriaSolicitudLabel_hslUsuaCrea}" for="hslUsuaCrea" />
+                    <h:inputText id="hslUsuaCrea" value="#{historiaSolicitudController.selected.hslUsuaCrea}" title="#{bundle.EditHistoriaSolicitudTitle_hslUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.EditHistoriaSolicitudLabel_solicitud}" for="solicitud" />
+                    <h:selectOneMenu id="solicitud" value="#{historiaSolicitudController.selected.solicitud}" title="#{bundle.EditHistoriaSolicitudTitle_solicitud}" >
+                        <f:selectItems value="#{solicitudController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{historiaSolicitudController.update}" value="#{bundle.EditHistoriaSolicitudSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditHistoriaSolicitudViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{historiaSolicitudController.prepareList}" value="#{bundle.EditHistoriaSolicitudShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditHistoriaSolicitudIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

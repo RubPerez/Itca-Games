@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCompraProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_cmpCorr}" for="cmpCorr" />
+                    <h:inputText id="cmpCorr" value="#{compraProveedorController.selected.cmpCorr}" title="#{bundle.EditCompraProveedorTitle_cmpCorr}" required="true" requiredMessage="#{bundle.EditCompraProveedorRequiredMessage_cmpCorr}"/>
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_cmpNumCompra}" for="cmpNumCompra" />
+                    <h:inputText id="cmpNumCompra" value="#{compraProveedorController.selected.cmpNumCompra}" title="#{bundle.EditCompraProveedorTitle_cmpNumCompra}" />
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_cmpFechCompra}" for="cmpFechCompra" />
+                    <h:inputText id="cmpFechCompra" value="#{compraProveedorController.selected.cmpFechCompra}" title="#{bundle.EditCompraProveedorTitle_cmpFechCompra}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_cmpFechVencimiento}" for="cmpFechVencimiento" />
+                    <h:inputText id="cmpFechVencimiento" value="#{compraProveedorController.selected.cmpFechVencimiento}" title="#{bundle.EditCompraProveedorTitle_cmpFechVencimiento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_cmpEstado}" for="cmpEstado" />
+                    <h:inputText id="cmpEstado" value="#{compraProveedorController.selected.cmpEstado}" title="#{bundle.EditCompraProveedorTitle_cmpEstado}" />
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_cmpCicloVida}" for="cmpCicloVida" />
+                    <h:inputText id="cmpCicloVida" value="#{compraProveedorController.selected.cmpCicloVida}" title="#{bundle.EditCompraProveedorTitle_cmpCicloVida}" />
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_cmpTarjeta}" for="cmpTarjeta" />
+                    <h:inputText id="cmpTarjeta" value="#{compraProveedorController.selected.cmpTarjeta}" title="#{bundle.EditCompraProveedorTitle_cmpTarjeta}" />
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_cmpFechaCrea}" for="cmpFechaCrea" />
+                    <h:inputText id="cmpFechaCrea" value="#{compraProveedorController.selected.cmpFechaCrea}" title="#{bundle.EditCompraProveedorTitle_cmpFechaCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_cmpUsuaCrea}" for="cmpUsuaCrea" />
+                    <h:inputText id="cmpUsuaCrea" value="#{compraProveedorController.selected.cmpUsuaCrea}" title="#{bundle.EditCompraProveedorTitle_cmpUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_tipoPago}" for="tipoPago" />
+                    <h:selectOneMenu id="tipoPago" value="#{compraProveedorController.selected.tipoPago}" title="#{bundle.EditCompraProveedorTitle_tipoPago}" >
+                        <f:selectItems value="#{tipoPagoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_proveedor}" for="proveedor" />
+                    <h:selectOneMenu id="proveedor" value="#{compraProveedorController.selected.proveedor}" title="#{bundle.EditCompraProveedorTitle_proveedor}" >
+                        <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_empleado}" for="empleado" />
+                    <h:selectOneMenu id="empleado" value="#{compraProveedorController.selected.empleado}" title="#{bundle.EditCompraProveedorTitle_empleado}" >
+                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCompraProveedorLabel_detalleCompraProveedor}" for="detalleCompraProveedor" />
+                    <h:selectOneMenu id="detalleCompraProveedor" value="#{compraProveedorController.selected.detalleCompraProveedor}" title="#{bundle.EditCompraProveedorTitle_detalleCompraProveedor}" >
+                        <f:selectItems value="#{detalleCompraProveedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{compraProveedorController.update}" value="#{bundle.EditCompraProveedorSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditCompraProveedorViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{compraProveedorController.prepareList}" value="#{bundle.EditCompraProveedorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditCompraProveedorIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

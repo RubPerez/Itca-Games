@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewVentaLabel_vntCorr}"/>
+                    <h:outputText value="#{ventaController.selected.vntCorr}" title="#{bundle.ViewVentaTitle_vntCorr}"/>
+                    <h:outputText value="#{bundle.ViewVentaLabel_vntNumVenta}"/>
+                    <h:outputText value="#{ventaController.selected.vntNumVenta}" title="#{bundle.ViewVentaTitle_vntNumVenta}"/>
+                    <h:outputText value="#{bundle.ViewVentaLabel_vntFechVenta}"/>
+                    <h:outputText value="#{ventaController.selected.vntFechVenta}" title="#{bundle.ViewVentaTitle_vntFechVenta}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVentaLabel_vntAutorizacion}"/>
+                    <h:outputText value="#{ventaController.selected.vntAutorizacion}" title="#{bundle.ViewVentaTitle_vntAutorizacion}"/>
+                    <h:outputText value="#{bundle.ViewVentaLabel_vntEstado}"/>
+                    <h:outputText value="#{ventaController.selected.vntEstado}" title="#{bundle.ViewVentaTitle_vntEstado}"/>
+                    <h:outputText value="#{bundle.ViewVentaLabel_vntCicloVida}"/>
+                    <h:outputText value="#{ventaController.selected.vntCicloVida}" title="#{bundle.ViewVentaTitle_vntCicloVida}"/>
+                    <h:outputText value="#{bundle.ViewVentaLabel_vntFechCrea}"/>
+                    <h:outputText value="#{ventaController.selected.vntFechCrea}" title="#{bundle.ViewVentaTitle_vntFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVentaLabel_vntUsuaCrea}"/>
+                    <h:outputText value="#{ventaController.selected.vntUsuaCrea}" title="#{bundle.ViewVentaTitle_vntUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewVentaLabel_tipoPago}"/>
+                    <h:outputText value="#{ventaController.selected.tipoPago}" title="#{bundle.ViewVentaTitle_tipoPago}"/>
+                    <h:outputText value="#{bundle.ViewVentaLabel_cliente}"/>
+                    <h:outputText value="#{ventaController.selected.cliente}" title="#{bundle.ViewVentaTitle_cliente}"/>
+                    <h:outputText value="#{bundle.ViewVentaLabel_alquiler}"/>
+                    <h:outputText value="#{ventaController.selected.alquiler}" title="#{bundle.ViewVentaTitle_alquiler}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ventaController.destroyAndView}" value="#{bundle.ViewVentaDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewVentaEditLink}"/>
+                <br />
+                <h:commandLink action="#{ventaController.prepareCreate}" value="#{bundle.ViewVentaCreateLink}" />
+                <br />
+                <h:commandLink action="#{ventaController.prepareList}" value="#{bundle.ViewVentaShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewVentaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

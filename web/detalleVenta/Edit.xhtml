@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDetalleVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_dtvCorr}" for="dtvCorr" />
+                    <h:inputText id="dtvCorr" value="#{detalleVentaController.selected.dtvCorr}" title="#{bundle.EditDetalleVentaTitle_dtvCorr}" required="true" requiredMessage="#{bundle.EditDetalleVentaRequiredMessage_dtvCorr}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_dtvDepSerie}" for="dtvDepSerie" />
+                    <h:inputText id="dtvDepSerie" value="#{detalleVentaController.selected.dtvDepSerie}" title="#{bundle.EditDetalleVentaTitle_dtvDepSerie}" />
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_dtvCantidad}" for="dtvCantidad" />
+                    <h:inputText id="dtvCantidad" value="#{detalleVentaController.selected.dtvCantidad}" title="#{bundle.EditDetalleVentaTitle_dtvCantidad}" />
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_dtvVenta}" for="dtvVenta" />
+                    <h:inputText id="dtvVenta" value="#{detalleVentaController.selected.dtvVenta}" title="#{bundle.EditDetalleVentaTitle_dtvVenta}" />
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_dtvGravado}" for="dtvGravado" />
+                    <h:inputText id="dtvGravado" value="#{detalleVentaController.selected.dtvGravado}" title="#{bundle.EditDetalleVentaTitle_dtvGravado}" />
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_dtvExento}" for="dtvExento" />
+                    <h:inputText id="dtvExento" value="#{detalleVentaController.selected.dtvExento}" title="#{bundle.EditDetalleVentaTitle_dtvExento}" />
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_dtvFechCrea}" for="dtvFechCrea" />
+                    <h:inputText id="dtvFechCrea" value="#{detalleVentaController.selected.dtvFechCrea}" title="#{bundle.EditDetalleVentaTitle_dtvFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_dtvUsuaCrea}" for="dtvUsuaCrea" />
+                    <h:inputText id="dtvUsuaCrea" value="#{detalleVentaController.selected.dtvUsuaCrea}" title="#{bundle.EditDetalleVentaTitle_dtvUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_venta}" for="venta" />
+                    <h:selectOneMenu id="venta" value="#{detalleVentaController.selected.venta}" title="#{bundle.EditDetalleVentaTitle_venta}" >
+                        <f:selectItems value="#{ventaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetalleVentaLabel_inventarioDetalle}" for="inventarioDetalle" />
+                    <h:selectOneMenu id="inventarioDetalle" value="#{detalleVentaController.selected.inventarioDetalle}" title="#{bundle.EditDetalleVentaTitle_inventarioDetalle}" >
+                        <f:selectItems value="#{inventarioDetalleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{detalleVentaController.update}" value="#{bundle.EditDetalleVentaSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditDetalleVentaViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{detalleVentaController.prepareList}" value="#{bundle.EditDetalleVentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditDetalleVentaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

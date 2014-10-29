@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvCorr}" for="prvCorr" />
+                    <h:inputText id="prvCorr" value="#{proveedorController.selected.prvCorr}" title="#{bundle.CreateProveedorTitle_prvCorr}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_prvCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvNombre}" for="prvNombre" />
+                    <h:inputText id="prvNombre" value="#{proveedorController.selected.prvNombre}" title="#{bundle.CreateProveedorTitle_prvNombre}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvDireccion}" for="prvDireccion" />
+                    <h:inputText id="prvDireccion" value="#{proveedorController.selected.prvDireccion}" title="#{bundle.CreateProveedorTitle_prvDireccion}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvTelefono}" for="prvTelefono" />
+                    <h:inputText id="prvTelefono" value="#{proveedorController.selected.prvTelefono}" title="#{bundle.CreateProveedorTitle_prvTelefono}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvEmail}" for="prvEmail" />
+                    <h:inputText id="prvEmail" value="#{proveedorController.selected.prvEmail}" title="#{bundle.CreateProveedorTitle_prvEmail}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvNit}" for="prvNit" />
+                    <h:inputText id="prvNit" value="#{proveedorController.selected.prvNit}" title="#{bundle.CreateProveedorTitle_prvNit}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvNumReg}" for="prvNumReg" />
+                    <h:inputText id="prvNumReg" value="#{proveedorController.selected.prvNumReg}" title="#{bundle.CreateProveedorTitle_prvNumReg}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvRepresentante}" for="prvRepresentante" />
+                    <h:inputText id="prvRepresentante" value="#{proveedorController.selected.prvRepresentante}" title="#{bundle.CreateProveedorTitle_prvRepresentante}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvFechCrea}" for="prvFechCrea" />
+                    <h:inputText id="prvFechCrea" value="#{proveedorController.selected.prvFechCrea}" title="#{bundle.CreateProveedorTitle_prvFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_prvUsuaCrea}" for="prvUsuaCrea" />
+                    <h:inputText id="prvUsuaCrea" value="#{proveedorController.selected.prvUsuaCrea}" title="#{bundle.CreateProveedorTitle_prvUsuaCrea}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{proveedorController.create}" value="#{bundle.CreateProveedorSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{proveedorController.prepareList}" value="#{bundle.CreateProveedorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateProveedorIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

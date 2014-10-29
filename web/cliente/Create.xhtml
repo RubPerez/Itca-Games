@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltCorr}" for="cltCorr" />
+                    <h:inputText id="cltCorr" value="#{clienteController.selected.cltCorr}" title="#{bundle.CreateClienteTitle_cltCorr}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_cltCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltNombre}" for="cltNombre" />
+                    <h:inputText id="cltNombre" value="#{clienteController.selected.cltNombre}" title="#{bundle.CreateClienteTitle_cltNombre}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltApellido}" for="cltApellido" />
+                    <h:inputText id="cltApellido" value="#{clienteController.selected.cltApellido}" title="#{bundle.CreateClienteTitle_cltApellido}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltNumDocumento}" for="cltNumDocumento" />
+                    <h:inputText id="cltNumDocumento" value="#{clienteController.selected.cltNumDocumento}" title="#{bundle.CreateClienteTitle_cltNumDocumento}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltTelefono}" for="cltTelefono" />
+                    <h:inputText id="cltTelefono" value="#{clienteController.selected.cltTelefono}" title="#{bundle.CreateClienteTitle_cltTelefono}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltEmail}" for="cltEmail" />
+                    <h:inputText id="cltEmail" value="#{clienteController.selected.cltEmail}" title="#{bundle.CreateClienteTitle_cltEmail}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltCicloVida}" for="cltCicloVida" />
+                    <h:inputText id="cltCicloVida" value="#{clienteController.selected.cltCicloVida}" title="#{bundle.CreateClienteTitle_cltCicloVida}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltStatus}" for="cltStatus" />
+                    <h:inputText id="cltStatus" value="#{clienteController.selected.cltStatus}" title="#{bundle.CreateClienteTitle_cltStatus}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltFechCrea}" for="cltFechCrea" />
+                    <h:inputText id="cltFechCrea" value="#{clienteController.selected.cltFechCrea}" title="#{bundle.CreateClienteTitle_cltFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_cltUsuaCrea}" for="cltUsuaCrea" />
+                    <h:inputText id="cltUsuaCrea" value="#{clienteController.selected.cltUsuaCrea}" title="#{bundle.CreateClienteTitle_cltUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.CreateClienteLabel_membresia}" for="membresia" />
+                    <h:selectOneMenu id="membresia" value="#{clienteController.selected.membresia}" title="#{bundle.CreateClienteTitle_membresia}" >
+                        <f:selectItems value="#{membresiaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clienteController.create}" value="#{bundle.CreateClienteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{clienteController.prepareList}" value="#{bundle.CreateClienteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateClienteIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

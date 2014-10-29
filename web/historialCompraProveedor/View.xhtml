@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHistorialCompraProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHistorialCompraProveedorLabel_hcpCorr}"/>
+                    <h:outputText value="#{historialCompraProveedorController.selected.hcpCorr}" title="#{bundle.ViewHistorialCompraProveedorTitle_hcpCorr}"/>
+                    <h:outputText value="#{bundle.ViewHistorialCompraProveedorLabel_hcpEstadoAnterior}"/>
+                    <h:outputText value="#{historialCompraProveedorController.selected.hcpEstadoAnterior}" title="#{bundle.ViewHistorialCompraProveedorTitle_hcpEstadoAnterior}"/>
+                    <h:outputText value="#{bundle.ViewHistorialCompraProveedorLabel_hcpCicloVidaAnterior}"/>
+                    <h:outputText value="#{historialCompraProveedorController.selected.hcpCicloVidaAnterior}" title="#{bundle.ViewHistorialCompraProveedorTitle_hcpCicloVidaAnterior}"/>
+                    <h:outputText value="#{bundle.ViewHistorialCompraProveedorLabel_hcpCodEmp}"/>
+                    <h:outputText value="#{historialCompraProveedorController.selected.hcpCodEmp}" title="#{bundle.ViewHistorialCompraProveedorTitle_hcpCodEmp}"/>
+                    <h:outputText value="#{bundle.ViewHistorialCompraProveedorLabel_hcpObservacion}"/>
+                    <h:outputText value="#{historialCompraProveedorController.selected.hcpObservacion}" title="#{bundle.ViewHistorialCompraProveedorTitle_hcpObservacion}"/>
+                    <h:outputText value="#{bundle.ViewHistorialCompraProveedorLabel_hcpFechCrea}"/>
+                    <h:outputText value="#{historialCompraProveedorController.selected.hcpFechCrea}" title="#{bundle.ViewHistorialCompraProveedorTitle_hcpFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHistorialCompraProveedorLabel_hcpUsuaCrea}"/>
+                    <h:outputText value="#{historialCompraProveedorController.selected.hcpUsuaCrea}" title="#{bundle.ViewHistorialCompraProveedorTitle_hcpUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewHistorialCompraProveedorLabel_compraProveedor}"/>
+                    <h:outputText value="#{historialCompraProveedorController.selected.compraProveedor}" title="#{bundle.ViewHistorialCompraProveedorTitle_compraProveedor}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{historialCompraProveedorController.destroyAndView}" value="#{bundle.ViewHistorialCompraProveedorDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewHistorialCompraProveedorEditLink}"/>
+                <br />
+                <h:commandLink action="#{historialCompraProveedorController.prepareCreate}" value="#{bundle.ViewHistorialCompraProveedorCreateLink}" />
+                <br />
+                <h:commandLink action="#{historialCompraProveedorController.prepareList}" value="#{bundle.ViewHistorialCompraProveedorShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewHistorialCompraProveedorIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

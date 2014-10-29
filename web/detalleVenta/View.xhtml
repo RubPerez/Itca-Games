@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDetalleVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_dtvCorr}"/>
+                    <h:outputText value="#{detalleVentaController.selected.dtvCorr}" title="#{bundle.ViewDetalleVentaTitle_dtvCorr}"/>
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_dtvDepSerie}"/>
+                    <h:outputText value="#{detalleVentaController.selected.dtvDepSerie}" title="#{bundle.ViewDetalleVentaTitle_dtvDepSerie}"/>
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_dtvCantidad}"/>
+                    <h:outputText value="#{detalleVentaController.selected.dtvCantidad}" title="#{bundle.ViewDetalleVentaTitle_dtvCantidad}"/>
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_dtvVenta}"/>
+                    <h:outputText value="#{detalleVentaController.selected.dtvVenta}" title="#{bundle.ViewDetalleVentaTitle_dtvVenta}"/>
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_dtvGravado}"/>
+                    <h:outputText value="#{detalleVentaController.selected.dtvGravado}" title="#{bundle.ViewDetalleVentaTitle_dtvGravado}"/>
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_dtvExento}"/>
+                    <h:outputText value="#{detalleVentaController.selected.dtvExento}" title="#{bundle.ViewDetalleVentaTitle_dtvExento}"/>
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_dtvFechCrea}"/>
+                    <h:outputText value="#{detalleVentaController.selected.dtvFechCrea}" title="#{bundle.ViewDetalleVentaTitle_dtvFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_dtvUsuaCrea}"/>
+                    <h:outputText value="#{detalleVentaController.selected.dtvUsuaCrea}" title="#{bundle.ViewDetalleVentaTitle_dtvUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_venta}"/>
+                    <h:outputText value="#{detalleVentaController.selected.venta}" title="#{bundle.ViewDetalleVentaTitle_venta}"/>
+                    <h:outputText value="#{bundle.ViewDetalleVentaLabel_inventarioDetalle}"/>
+                    <h:outputText value="#{detalleVentaController.selected.inventarioDetalle}" title="#{bundle.ViewDetalleVentaTitle_inventarioDetalle}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detalleVentaController.destroyAndView}" value="#{bundle.ViewDetalleVentaDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewDetalleVentaEditLink}"/>
+                <br />
+                <h:commandLink action="#{detalleVentaController.prepareCreate}" value="#{bundle.ViewDetalleVentaCreateLink}" />
+                <br />
+                <h:commandLink action="#{detalleVentaController.prepareList}" value="#{bundle.ViewDetalleVentaShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewDetalleVentaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

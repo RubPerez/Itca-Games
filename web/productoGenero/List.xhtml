@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductoGeneroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListProductoGeneroEmpty}" rendered="#{productoGeneroController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{productoGeneroController.items.rowCount > 0}">
+                <h:outputText value="#{productoGeneroController.pagination.pageFirstItem + 1}..#{productoGeneroController.pagination.pageLastItem + 1}/#{productoGeneroController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{productoGeneroController.previous}" value="#{bundle.Previous} #{productoGeneroController.pagination.pageSize}" rendered="#{productoGeneroController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{productoGeneroController.next}" value="#{bundle.Next} #{productoGeneroController.pagination.pageSize}" rendered="#{productoGeneroController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{productoGeneroController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductoGeneroTitle_pgnCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.pgnCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductoGeneroTitle_pgnNombre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.pgnNombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductoGeneroTitle_pgnFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.pgnFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductoGeneroTitle_pgnUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.pgnUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductoGeneroTitle_generoJuego}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.generoJuego}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListProductoGeneroTitle_catalogoProducto}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.catalogoProducto}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{productoGeneroController.prepareView}" value="#{bundle.ListProductoGeneroViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{productoGeneroController.prepareEdit}" value="#{bundle.ListProductoGeneroEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{productoGeneroController.destroy}" value="#{bundle.ListProductoGeneroDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{productoGeneroController.prepareCreate}" value="#{bundle.ListProductoGeneroCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListProductoGeneroIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

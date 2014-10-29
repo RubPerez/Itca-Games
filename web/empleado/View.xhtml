@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEmpleadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empCorr}"/>
+                    <h:outputText value="#{empleadoController.selected.empCorr}" title="#{bundle.ViewEmpleadoTitle_empCorr}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empNombre}"/>
+                    <h:outputText value="#{empleadoController.selected.empNombre}" title="#{bundle.ViewEmpleadoTitle_empNombre}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empApellodo}"/>
+                    <h:outputText value="#{empleadoController.selected.empApellodo}" title="#{bundle.ViewEmpleadoTitle_empApellodo}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empTelefono}"/>
+                    <h:outputText value="#{empleadoController.selected.empTelefono}" title="#{bundle.ViewEmpleadoTitle_empTelefono}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empNumDoc}"/>
+                    <h:outputText value="#{empleadoController.selected.empNumDoc}" title="#{bundle.ViewEmpleadoTitle_empNumDoc}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empDireccion}"/>
+                    <h:outputText value="#{empleadoController.selected.empDireccion}" title="#{bundle.ViewEmpleadoTitle_empDireccion}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empEmpEmail}"/>
+                    <h:outputText value="#{empleadoController.selected.empEmpEmail}" title="#{bundle.ViewEmpleadoTitle_empEmpEmail}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empFechNacimiento}"/>
+                    <h:outputText value="#{empleadoController.selected.empFechNacimiento}" title="#{bundle.ViewEmpleadoTitle_empFechNacimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empFechCrea}"/>
+                    <h:outputText value="#{empleadoController.selected.empFechCrea}" title="#{bundle.ViewEmpleadoTitle_empFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_empUsuaCrea}"/>
+                    <h:outputText value="#{empleadoController.selected.empUsuaCrea}" title="#{bundle.ViewEmpleadoTitle_empUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_usuario}"/>
+                    <h:outputText value="#{empleadoController.selected.usuario}" title="#{bundle.ViewEmpleadoTitle_usuario}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_sucursal}"/>
+                    <h:outputText value="#{empleadoController.selected.sucursal}" title="#{bundle.ViewEmpleadoTitle_sucursal}"/>
+                    <h:outputText value="#{bundle.ViewEmpleadoLabel_cargo}"/>
+                    <h:outputText value="#{empleadoController.selected.cargo}" title="#{bundle.ViewEmpleadoTitle_cargo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{empleadoController.destroyAndView}" value="#{bundle.ViewEmpleadoDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewEmpleadoEditLink}"/>
+                <br />
+                <h:commandLink action="#{empleadoController.prepareCreate}" value="#{bundle.ViewEmpleadoCreateLink}" />
+                <br />
+                <h:commandLink action="#{empleadoController.prepareList}" value="#{bundle.ViewEmpleadoShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewEmpleadoIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

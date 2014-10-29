@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetalleVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListDetalleVentaEmpty}" rendered="#{detalleVentaController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{detalleVentaController.items.rowCount > 0}">
+                <h:outputText value="#{detalleVentaController.pagination.pageFirstItem + 1}..#{detalleVentaController.pagination.pageLastItem + 1}/#{detalleVentaController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{detalleVentaController.previous}" value="#{bundle.Previous} #{detalleVentaController.pagination.pageSize}" rendered="#{detalleVentaController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{detalleVentaController.next}" value="#{bundle.Next} #{detalleVentaController.pagination.pageSize}" rendered="#{detalleVentaController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{detalleVentaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_dtvCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtvCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_dtvDepSerie}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtvDepSerie}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_dtvCantidad}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtvCantidad}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_dtvVenta}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtvVenta}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_dtvGravado}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtvGravado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_dtvExento}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtvExento}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_dtvFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtvFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_dtvUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dtvUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_venta}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.venta}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListDetalleVentaTitle_inventarioDetalle}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.inventarioDetalle}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{detalleVentaController.prepareView}" value="#{bundle.ListDetalleVentaViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{detalleVentaController.prepareEdit}" value="#{bundle.ListDetalleVentaEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{detalleVentaController.destroy}" value="#{bundle.ListDetalleVentaDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{detalleVentaController.prepareCreate}" value="#{bundle.ListDetalleVentaCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListDetalleVentaIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

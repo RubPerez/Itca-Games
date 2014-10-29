@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRolLabel_rolCurr}" for="rolCurr" />
+                    <h:inputText id="rolCurr" value="#{rolController.selected.rolCurr}" title="#{bundle.CreateRolTitle_rolCurr}" required="true" requiredMessage="#{bundle.CreateRolRequiredMessage_rolCurr}"/>
+                    <h:outputLabel value="#{bundle.CreateRolLabel_rolTipo}" for="rolTipo" />
+                    <h:inputText id="rolTipo" value="#{rolController.selected.rolTipo}" title="#{bundle.CreateRolTitle_rolTipo}" />
+                    <h:outputLabel value="#{bundle.CreateRolLabel_rolDescripcion}" for="rolDescripcion" />
+                    <h:inputText id="rolDescripcion" value="#{rolController.selected.rolDescripcion}" title="#{bundle.CreateRolTitle_rolDescripcion}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rolController.create}" value="#{bundle.CreateRolSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{rolController.prepareList}" value="#{bundle.CreateRolShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateRolIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

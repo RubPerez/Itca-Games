@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDanioInventarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDanioInventarioLabel_daiCorr}"/>
+                    <h:outputText value="#{danioInventarioController.selected.daiCorr}" title="#{bundle.ViewDanioInventarioTitle_daiCorr}"/>
+                    <h:outputText value="#{bundle.ViewDanioInventarioLabel_daiCosto}"/>
+                    <h:outputText value="#{danioInventarioController.selected.daiCosto}" title="#{bundle.ViewDanioInventarioTitle_daiCosto}"/>
+                    <h:outputText value="#{bundle.ViewDanioInventarioLabel_daiFechCrea}"/>
+                    <h:outputText value="#{danioInventarioController.selected.daiFechCrea}" title="#{bundle.ViewDanioInventarioTitle_daiFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewDanioInventarioLabel_daiUsuaCrea}"/>
+                    <h:outputText value="#{danioInventarioController.selected.daiUsuaCrea}" title="#{bundle.ViewDanioInventarioTitle_daiUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewDanioInventarioLabel_inventario}"/>
+                    <h:outputText value="#{danioInventarioController.selected.inventario}" title="#{bundle.ViewDanioInventarioTitle_inventario}"/>
+                    <h:outputText value="#{bundle.ViewDanioInventarioLabel_danio}"/>
+                    <h:outputText value="#{danioInventarioController.selected.danio}" title="#{bundle.ViewDanioInventarioTitle_danio}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{danioInventarioController.destroyAndView}" value="#{bundle.ViewDanioInventarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewDanioInventarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{danioInventarioController.prepareCreate}" value="#{bundle.ViewDanioInventarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{danioInventarioController.prepareList}" value="#{bundle.ViewDanioInventarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewDanioInventarioIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

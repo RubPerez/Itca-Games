@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHistorialAlquilerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListHistorialAlquilerEmpty}" rendered="#{historialAlquilerController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{historialAlquilerController.items.rowCount > 0}">
+                <h:outputText value="#{historialAlquilerController.pagination.pageFirstItem + 1}..#{historialAlquilerController.pagination.pageLastItem + 1}/#{historialAlquilerController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{historialAlquilerController.previous}" value="#{bundle.Previous} #{historialAlquilerController.pagination.pageSize}" rendered="#{historialAlquilerController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{historialAlquilerController.next}" value="#{bundle.Next} #{historialAlquilerController.pagination.pageSize}" rendered="#{historialAlquilerController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{historialAlquilerController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialAlquilerTitle_halCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.halCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialAlquilerTitle_halCodEmp}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.halCodEmp}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialAlquilerTitle_hallEstadoAnterior}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hallEstadoAnterior}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialAlquilerTitle_halCicloVidaAnterior}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.halCicloVidaAnterior}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialAlquilerTitle_halObservacion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.halObservacion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialAlquilerTitle_hallFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hallFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialAlquilerTitle_halUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.halUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListHistorialAlquilerTitle_alquiler}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.alquiler}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{historialAlquilerController.prepareView}" value="#{bundle.ListHistorialAlquilerViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{historialAlquilerController.prepareEdit}" value="#{bundle.ListHistorialAlquilerEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{historialAlquilerController.destroy}" value="#{bundle.ListHistorialAlquilerDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{historialAlquilerController.prepareCreate}" value="#{bundle.ListHistorialAlquilerCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListHistorialAlquilerIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

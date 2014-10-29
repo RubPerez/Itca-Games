@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditConsolaJuegoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditConsolaJuegoLabel_cjoCorr}" for="cjoCorr" />
+                    <h:inputText id="cjoCorr" value="#{consolaJuegoController.selected.cjoCorr}" title="#{bundle.EditConsolaJuegoTitle_cjoCorr}" required="true" requiredMessage="#{bundle.EditConsolaJuegoRequiredMessage_cjoCorr}"/>
+                    <h:outputLabel value="#{bundle.EditConsolaJuegoLabel_cjoNombre}" for="cjoNombre" />
+                    <h:inputText id="cjoNombre" value="#{consolaJuegoController.selected.cjoNombre}" title="#{bundle.EditConsolaJuegoTitle_cjoNombre}" />
+                    <h:outputLabel value="#{bundle.EditConsolaJuegoLabel_cjoFechCrea}" for="cjoFechCrea" />
+                    <h:inputText id="cjoFechCrea" value="#{consolaJuegoController.selected.cjoFechCrea}" title="#{bundle.EditConsolaJuegoTitle_cjoFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditConsolaJuegoLabel_cjoUsuaCrea}" for="cjoUsuaCrea" />
+                    <h:inputText id="cjoUsuaCrea" value="#{consolaJuegoController.selected.cjoUsuaCrea}" title="#{bundle.EditConsolaJuegoTitle_cjoUsuaCrea}" />
+                </h:panelGrid>
+                <h:commandLink action="#{consolaJuegoController.update}" value="#{bundle.EditConsolaJuegoSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditConsolaJuegoViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{consolaJuegoController.prepareList}" value="#{bundle.EditConsolaJuegoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditConsolaJuegoIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

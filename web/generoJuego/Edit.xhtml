@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGeneroJuegoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGeneroJuegoLabel_gnjCorr}" for="gnjCorr" />
+                    <h:inputText id="gnjCorr" value="#{generoJuegoController.selected.gnjCorr}" title="#{bundle.EditGeneroJuegoTitle_gnjCorr}" required="true" requiredMessage="#{bundle.EditGeneroJuegoRequiredMessage_gnjCorr}"/>
+                    <h:outputLabel value="#{bundle.EditGeneroJuegoLabel_gnjNombre}" for="gnjNombre" />
+                    <h:inputText id="gnjNombre" value="#{generoJuegoController.selected.gnjNombre}" title="#{bundle.EditGeneroJuegoTitle_gnjNombre}" />
+                    <h:outputLabel value="#{bundle.EditGeneroJuegoLabel_gnjFechCrea}" for="gnjFechCrea" />
+                    <h:inputText id="gnjFechCrea" value="#{generoJuegoController.selected.gnjFechCrea}" title="#{bundle.EditGeneroJuegoTitle_gnjFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditGeneroJuegoLabel_gnjUsuaCrea}" for="gnjUsuaCrea" />
+                    <h:inputText id="gnjUsuaCrea" value="#{generoJuegoController.selected.gnjUsuaCrea}" title="#{bundle.EditGeneroJuegoTitle_gnjUsuaCrea}" />
+                </h:panelGrid>
+                <h:commandLink action="#{generoJuegoController.update}" value="#{bundle.EditGeneroJuegoSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditGeneroJuegoViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{generoJuegoController.prepareList}" value="#{bundle.EditGeneroJuegoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditGeneroJuegoIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

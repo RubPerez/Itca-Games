@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHistoriaSolicitudTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHistoriaSolicitudLabel_hslCorr}"/>
+                    <h:outputText value="#{historiaSolicitudController.selected.hslCorr}" title="#{bundle.ViewHistoriaSolicitudTitle_hslCorr}"/>
+                    <h:outputText value="#{bundle.ViewHistoriaSolicitudLabel_hslComentario}"/>
+                    <h:outputText value="#{historiaSolicitudController.selected.hslComentario}" title="#{bundle.ViewHistoriaSolicitudTitle_hslComentario}"/>
+                    <h:outputText value="#{bundle.ViewHistoriaSolicitudLabel_hslFechCrea}"/>
+                    <h:outputText value="#{historiaSolicitudController.selected.hslFechCrea}" title="#{bundle.ViewHistoriaSolicitudTitle_hslFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHistoriaSolicitudLabel_hslUsuaCrea}"/>
+                    <h:outputText value="#{historiaSolicitudController.selected.hslUsuaCrea}" title="#{bundle.ViewHistoriaSolicitudTitle_hslUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewHistoriaSolicitudLabel_solicitud}"/>
+                    <h:outputText value="#{historiaSolicitudController.selected.solicitud}" title="#{bundle.ViewHistoriaSolicitudTitle_solicitud}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{historiaSolicitudController.destroyAndView}" value="#{bundle.ViewHistoriaSolicitudDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewHistoriaSolicitudEditLink}"/>
+                <br />
+                <h:commandLink action="#{historiaSolicitudController.prepareCreate}" value="#{bundle.ViewHistoriaSolicitudCreateLink}" />
+                <br />
+                <h:commandLink action="#{historiaSolicitudController.prepareList}" value="#{bundle.ViewHistoriaSolicitudShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewHistoriaSolicitudIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHistorialVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHistorialVentaLabel_hsvCorr}"/>
+                    <h:outputText value="#{historialVentaController.selected.hsvCorr}" title="#{bundle.ViewHistorialVentaTitle_hsvCorr}"/>
+                    <h:outputText value="#{bundle.ViewHistorialVentaLabel_hsvCodEmp}"/>
+                    <h:outputText value="#{historialVentaController.selected.hsvCodEmp}" title="#{bundle.ViewHistorialVentaTitle_hsvCodEmp}"/>
+                    <h:outputText value="#{bundle.ViewHistorialVentaLabel_hsvEstadoAnterior}"/>
+                    <h:outputText value="#{historialVentaController.selected.hsvEstadoAnterior}" title="#{bundle.ViewHistorialVentaTitle_hsvEstadoAnterior}"/>
+                    <h:outputText value="#{bundle.ViewHistorialVentaLabel_hsvObservacion}"/>
+                    <h:outputText value="#{historialVentaController.selected.hsvObservacion}" title="#{bundle.ViewHistorialVentaTitle_hsvObservacion}"/>
+                    <h:outputText value="#{bundle.ViewHistorialVentaLabel_hsvFechCrea}"/>
+                    <h:outputText value="#{historialVentaController.selected.hsvFechCrea}" title="#{bundle.ViewHistorialVentaTitle_hsvFechCrea}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHistorialVentaLabel_hsvUsuaCrea}"/>
+                    <h:outputText value="#{historialVentaController.selected.hsvUsuaCrea}" title="#{bundle.ViewHistorialVentaTitle_hsvUsuaCrea}"/>
+                    <h:outputText value="#{bundle.ViewHistorialVentaLabel_venta}"/>
+                    <h:outputText value="#{historialVentaController.selected.venta}" title="#{bundle.ViewHistorialVentaTitle_venta}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{historialVentaController.destroyAndView}" value="#{bundle.ViewHistorialVentaDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewHistorialVentaEditLink}"/>
+                <br />
+                <h:commandLink action="#{historialVentaController.prepareCreate}" value="#{bundle.ViewHistorialVentaCreateLink}" />
+                <br />
+                <h:commandLink action="#{historialVentaController.prepareList}" value="#{bundle.ViewHistorialVentaShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewHistorialVentaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

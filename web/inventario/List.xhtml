@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListInventarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListInventarioEmpty}" rendered="#{inventarioController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{inventarioController.items.rowCount > 0}">
+                <h:outputText value="#{inventarioController.pagination.pageFirstItem + 1}..#{inventarioController.pagination.pageLastItem + 1}/#{inventarioController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{inventarioController.previous}" value="#{bundle.Previous} #{inventarioController.pagination.pageSize}" rendered="#{inventarioController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{inventarioController.next}" value="#{bundle.Next} #{inventarioController.pagination.pageSize}" rendered="#{inventarioController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{inventarioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invCorr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invCorr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invTipoTransaccion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invTipoTransaccion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invNombre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invNombre}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invDescripcion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invDescripcion}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invCantidad}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invCantidad}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invPrecio}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invPrecio}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invEstado}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invEstado}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invImagen}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invImagen}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invFechCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invFechCrea}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_invUsuaCrea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.invUsuaCrea}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_sucursal}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sucursal}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_modelo}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.modelo}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_marca}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.marca}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_catalogoProducto}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.catalogoProducto}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListInventarioTitle_consolaInventario}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.consolaInventario}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{inventarioController.prepareView}" value="#{bundle.ListInventarioViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{inventarioController.prepareEdit}" value="#{bundle.ListInventarioEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{inventarioController.destroy}" value="#{bundle.ListInventarioDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{inventarioController.prepareCreate}" value="#{bundle.ListInventarioCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListInventarioIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

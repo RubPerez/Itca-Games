@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDetalleCompraProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDetalleCompraProveedorLabel_dtcCmpCorr}" for="dtcCmpCorr" />
+                    <h:inputText id="dtcCmpCorr" value="#{detalleCompraProveedorController.selected.dtcCmpCorr}" title="#{bundle.CreateDetalleCompraProveedorTitle_dtcCmpCorr}" required="true" requiredMessage="#{bundle.CreateDetalleCompraProveedorRequiredMessage_dtcCmpCorr}"/>
+                    <h:outputLabel value="#{bundle.CreateDetalleCompraProveedorLabel_dtcCantidad}" for="dtcCantidad" />
+                    <h:inputText id="dtcCantidad" value="#{detalleCompraProveedorController.selected.dtcCantidad}" title="#{bundle.CreateDetalleCompraProveedorTitle_dtcCantidad}" />
+                    <h:outputLabel value="#{bundle.CreateDetalleCompraProveedorLabel_dtcEnvio}" for="dtcEnvio" />
+                    <h:inputText id="dtcEnvio" value="#{detalleCompraProveedorController.selected.dtcEnvio}" title="#{bundle.CreateDetalleCompraProveedorTitle_dtcEnvio}" />
+                    <h:outputLabel value="#{bundle.CreateDetalleCompraProveedorLabel_dtcEstado}" for="dtcEstado" />
+                    <h:inputText id="dtcEstado" value="#{detalleCompraProveedorController.selected.dtcEstado}" title="#{bundle.CreateDetalleCompraProveedorTitle_dtcEstado}" />
+                    <h:outputLabel value="#{bundle.CreateDetalleCompraProveedorLabel_dtcFechCrea}" for="dtcFechCrea" />
+                    <h:inputText id="dtcFechCrea" value="#{detalleCompraProveedorController.selected.dtcFechCrea}" title="#{bundle.CreateDetalleCompraProveedorTitle_dtcFechCrea}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateDetalleCompraProveedorLabel_dtcUsuaCrea}" for="dtcUsuaCrea" />
+                    <h:inputText id="dtcUsuaCrea" value="#{detalleCompraProveedorController.selected.dtcUsuaCrea}" title="#{bundle.CreateDetalleCompraProveedorTitle_dtcUsuaCrea}" />
+                    <h:outputLabel value="#{bundle.CreateDetalleCompraProveedorLabel_dtcPrecio}" for="dtcPrecio" />
+                    <h:inputText id="dtcPrecio" value="#{detalleCompraProveedorController.selected.dtcPrecio}" title="#{bundle.CreateDetalleCompraProveedorTitle_dtcPrecio}" />
+                    <h:outputLabel value="#{bundle.CreateDetalleCompraProveedorLabel_inventario}" for="inventario" />
+                    <h:selectOneMenu id="inventario" value="#{detalleCompraProveedorController.selected.inventario}" title="#{bundle.CreateDetalleCompraProveedorTitle_inventario}" >
+                        <f:selectItems value="#{inventarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDetalleCompraProveedorLabel_compraProveedor}" for="compraProveedor" />
+                    <h:selectOneMenu id="compraProveedor" value="#{detalleCompraProveedorController.selected.compraProveedor}" title="#{bundle.CreateDetalleCompraProveedorTitle_compraProveedor}" required="true" requiredMessage="#{bundle.CreateDetalleCompraProveedorRequiredMessage_compraProveedor}">
+                        <f:selectItems value="#{compraProveedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detalleCompraProveedorController.create}" value="#{bundle.CreateDetalleCompraProveedorSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{detalleCompraProveedorController.prepareList}" value="#{bundle.CreateDetalleCompraProveedorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateDetalleCompraProveedorIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
